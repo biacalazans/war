@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <conio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int paises[24] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+int achou(int x);
+
+int main(){
+    int i, x, y, n=0;
+    srand(time(NULL));
+    
+    
+	for(i = 0;i<24;i++){
+       
+        x = (rand()%24)+1;
+        n=0;
+        
+        while(n<25){
+        	if(achou(x)) {
+        		x = (rand()%24)+1;
+        		n=0;
+	    	}
+			n++;	
+		}
+			paises[i] = x;
+			printf("%d\n",paises[i]);
+    }
+    
+    return 0;
+}
+
+int achou(int x){
+
+	int n; 
+	
+		n=0;
+	
+		while(n<25){
+		
+       	  if(paises[n] == x ){
+        	 	return 1;
+			 } 
+			n++;
+		}
+	return 0;
+}
