@@ -1,0 +1,15 @@
+#include<stdio.h>
+#include <windows.h>
+int main (){
+ system("color 97");
+
+printf ("Ola mundo");
+
+
+
+
+
+
+
+
+return 0;}
