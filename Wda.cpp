@@ -6,7 +6,6 @@
 int dados(){
 
 	int result;
-	srand(time(NULL));
 
 	result=(rand()%6)+1;
 
