@@ -167,15 +167,18 @@ int main(){
 	if (MaxA==MaxB) {printf("%d VS %d: Defesa vence!\n", MaxA, MaxB);}
 	
 	// MA Vs MB
+	if(MA != 0 && MB != 0){
 	if (MA>MB) {printf("%d VS %d: Ataque vence!\n", MA, MB);}
 	if (MA<MB) {printf("%d VS %d: Defesa vence!\n", MA, MB);}
 	if (MA==MB) {printf("%d VS %d: Defesa vence!\n", MA, MB);}
+	}
 	
 	// MnA Vs MnB
+	if(MnA != 0 && MnB != 0){
 	if (MnA>MnB) {printf("%d VS %d: Ataque vence!\n", MnA, MnB);}
 	if (MnA<MnB) {printf("%d VS %d: Defesa vence!\n", MnA, MnB);}
 	if (MnA==MnB) {printf("%d VS %d: Defesa vence!\n", MnA, MnB);}
-	
+	}
 		
 	return 0;
 }
