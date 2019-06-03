@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <iostream>
 #include <time.h>
 #include <conio.h>
 #include <stdlib.h>
@@ -8,30 +7,26 @@
 
     typedef struct {
    		
-   		int codigo;
-		int tropas;
-   		int linha;
-   		int coluna;
-   		char jogador;
-   	
-	} pais;
-	   
-	pais ghana = {1}, benin={2}, haiti = {3}, sudan = {4}, egypt = {5}, niger = {6}, china = {7}, japan = {8}, macao = {9}, nepal = {10}, korea ={11},
-	   india = {12}, italy = {13}, nauru = {14}, palau = {15}, spain = {16}, malta = {17}, tonga = {18}, qatar = {19}, samda = {20}, yemen = {21},
-	   syria = {22}, aruba = {23}, chile = {24};
+		int tropas[3];
+   		char jogador,coord1, coord2, coord3;   
+		   	
+	} war;
 	
-
+	 war territorio [25];
+     
+    
+int totalA, totalB;
 char playera [51], playerb [51];
 int paises[24], paisesA [12], paisesB[12];
 int achou(int x);
 char matriz[35][49] =    {{'1','#','#','#','#','#','#',' ','2','#','#','#','#','#','#',' ','3','#','#','#','#','#','#',' ',' ',' ','7','#','#','#','#','#','#',' ','8','#','#','#','#','#','#',' ','9','#','#','#','#','#','#'},
-                          {'#',' ',' ',' ',' ',' ','#','=','#',' ',' ',' ',' ',' ','#','=','#',' ',' ',' ',' ',' ','#','=','=','=','#',' ',' ',' ',' ',' ','#','=','#',' ',' ',' ',' ',' ','#','=','#',' ',' ',' ',' ',' ','#'},
+                          {'#',' ','0','0','1',' ','#','=','#',' ','0','0','1',' ','#','=','#',' ','0','0','1',' ','#','=','=','=','#',' ','0','0','1',' ','#','=','#',' ','0','0','1',' ','#','=','#',' ','0','0','1',' ','#'},
                           {'#','G','H','A','N','A','#','=','#','B','E','N','I','N','#','=','#','H','A','I','T','I','#','=','=','=','#','C','H','I','N','A','#','=','#','J','A','P','A','N','#','=','#','M','A','C','A','O','#'},
                           {'#','#','#','#','#','#','#',' ','#','#','#','#','#','#','#',' ','#','#','#','#','#','#','#',' ',' ',' ','#','#','#','#','#','#','#',' ','#','#','#','#','#','#','#',' ','#','#','#','#','#','#','#'},
                           {' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' '},
                           {' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' '},
                           {'4','#','#','#','#','#','#',' ','5','#','#','#','#','#','#',' ','6','#','#','#','#','#','#',' ',' ',' ','1','0','#','#','#','#','#',' ','1','1','#','#','#','#','#',' ','1','2','#','#','#','#','#'},
-                          {'#',' ',' ',' ',' ',' ','#','=','#',' ',' ',' ',' ',' ','#','=','#',' ',' ',' ',' ',' ','#','=','=','=','#',' ',' ',' ',' ',' ','#','=','1',' ',' ',' ',' ',' ','#','=','#',' ',' ',' ',' ',' ','#'},
+                          {'#',' ','0','0','1',' ','#','=','#',' ','0','0','1',' ','#','=','#',' ','0','0','1',' ','#','=','=','=','#',' ','0','0','1',' ','#','=','#',' ','0','0','1',' ','#','=','#',' ','0','0','1',' ','#'},
                           {'#','S','U','D','A','N','#','=','#','E','G','Y','P','T','#','=','#','N','I','G','E','R','#','=','=','=','#','N','E','P','A','L','#','=','#','K','O','R','E','A','#','=','#','I','N','D','I','A','#'},
                           {'#','#','#','#','#','#','#',' ','#','#','#','#','#','#','#',' ','#','#','#','#','#','#','#',' ',' ',' ','#','#','#','#','#','#','#',' ','#','#','#','#','#','#','#',' ','#','#','#','#','#','#','#'},
                           {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
@@ -41,19 +36,18 @@ char matriz[35][49] =    {{'1','#','#','#','#','#','#',' ','2','#','#','#','#','
                           {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
                           {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
                           {'1','3','#','#','#','#','#',' ','1','4','#','#','#','#','#',' ','1','5','#','#','#','#','#',' ',' ',' ','1','9','#','#','#','#','#',' ','2','0','#','#','#','#','#',' ','2','1','#','#','#','#','#'},
-                          {'#',' ',' ',' ',' ',' ','#','=','#',' ',' ',' ',' ',' ','#','=','#',' ',' ',' ',' ',' ','#','=','=','=','#',' ',' ',' ',' ',' ','#','=','#',' ',' ',' ',' ',' ','#','=','#',' ',' ',' ',' ',' ','#'},
+                          {'#',' ','0','0','1',' ','#','=','#',' ','0','0','1',' ','#','=','#',' ','0','0','1',' ','#','=','=','=','#',' ','0','0','1',' ','#','=','#',' ','0','0','1',' ','#','=','#',' ','0','0','1',' ','#'},
                           {'#','I','T','A','L','Y','#','=','#','N','A','U','R','U','#','=','#','P','A','L','A','U','#','=','=','=','#','Q','A','T','A','R','#','=','#','S','A','M','O','A','#','=','#','Y','E','M','E','N','#'},
                           {'#','#','#','#','#','#','#',' ','#','#','#','#','#','#','#',' ','#','#','#','#','#','#','#',' ',' ',' ','#','#','#','#','#','#','#',' ','#','#','#','#','#','#','#',' ','#','#','#','#','#','#','#'},
                           {' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' '},
                           {' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' '},
                           {'1','6','#','#','#','#','#',' ','1','7','#','#','#','#','#',' ','1','8','#','#','#','#','#','=','=','=','2','2','#','#','#','#','#',' ','2','3','#','#','#','#','#',' ','2','4','#','#','#','#','#'},
-                          {'#',' ',' ',' ',' ',' ','#','=','#',' ',' ',' ',' ',' ','#','=','#',' ',' ',' ',' ',' ','#','=','=','=','#',' ',' ',' ',' ',' ','#','=','#',' ',' ',' ',' ',' ','#','=','#',' ',' ',' ',' ',' ','#'},
+                          {'#',' ','0','0','1',' ','#','=','#',' ','0','0','1',' ','#','=','#',' ','0','0','1',' ','#','=','=','=','#',' ','0','0','1',' ','#','=','#',' ','0','0','1',' ','#','=','#',' ','0','0','1',' ','#'},
                           {'#','S','P','A','I','N','#','=','#','M','A','L','T','A','#','=','#','T','O','N','G','A','#',' ',' ',' ','#','S','Y','R','I','A','#','=','#','A','R','U','B','A','#','=','#','C','H','I','L','E','#'},
                           {'#','#','#','#','#','#','#',' ','#','#','#','#','#','#','#',' ','#','#','#','#','#','#','#',' ',' ',' ','#','#','#','#','#','#','#',' ','#','#','#','#','#','#','#',' ','#','#','#','#','#','#','#'},
                           {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
                           {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
                           {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '}};
-
 
 void lernome (void) {
 	
@@ -125,9 +119,9 @@ int achou(int x){
 int dados(){
 
 	int result;
-	srand(time(NULL));
 
 	result=(rand()%6+1);
+	
 
   return result;
 }
@@ -165,124 +159,124 @@ int dados(){
     for (int i = 0; i < 12; ++i){
     	
     	if (paisesA[i] == 1){
-    		ghana.jogador = 'A';
-    		matriz [1][4] = 'A' ;
+    		territorio[1].jogador = 'A';
+    		matriz [0][3] = 'A' ;
 		}
          
         if (paisesA[i] == 2){
-    		benin.jogador = 'A';
-    		matriz [1][12] = 'A';
+    		territorio[2].jogador = 'A';
+    		matriz [0][11] = 'A';
 		} 
 	
         if (paisesA[i] == 3){
-    		haiti.jogador = 'A';
-    		matriz [1][20] = 'A';
+        territorio[3].jogador = 'A';
+    		matriz [0][19] = 'A';
 		} 
 	    
         if (paisesA[i] == 4){
-    		sudan.jogador = 'A';
-    		matriz [7][4] = 'A';
+    		territorio[4].jogador = 'A';
+    		matriz [6][3] = 'A';
 		}  
 		
         if (paisesA[i] == 5){
-    		egypt.jogador = 'A';
-    		matriz [7][12] = 'A';
+    		territorio[5].jogador = 'A';
+    		matriz [6][11] = 'A';
 		} 
 
         
         if (paisesA[i] == 6){
-    		niger.jogador = 'A';
-    		matriz [7][20] = 'A';
+    		territorio[6].jogador = 'A';
+    		matriz [6][19] = 'A';
 		} 
 
         if (paisesA[i] == 7){
-    		china.jogador = 'A';
-    		matriz [1][30] = 'A';
+    		territorio[7].jogador = 'A';
+    		matriz [0][29] = 'A';
 		} 
         
         if (paisesA[i] == 8){
-    		japan.jogador = 'A';
-    		matriz [1][38] = 'A';
+    		territorio[8].jogador = 'A';
+    		matriz [0][37] = 'A';
 		} 
          
         if (paisesA[i] == 9){
-    		macao.jogador = 'A';
-    		matriz [1][46] = 'A';
+    		territorio[9].jogador = 'A';
+    		matriz [0][45] = 'A';
 		} 
         
         if (paisesA[i] == 10){
-    		nepal.jogador = 'A';
-    		matriz [7][30] = 'A';
+    		territorio[10].jogador = 'A';
+    		matriz [6][29] = 'A';
 		} 
 		 
         if (paisesA[i] == 11){
-    		korea.jogador = 'A';
-    		matriz [7][38] = 'A';
+    		territorio[11].jogador = 'A';
+    		matriz [6][37] = 'A';
 		} 
 		
         if (paisesA[i] == 12){
-    		india.jogador = 'A';
-    		matriz [7][46] = 'A';
+    		territorio[12].jogador = 'A';
+    		matriz [6][45] = 'A';
 		} 
 		
         if (paisesA[i] == 13){
-    		italy.jogador = 'A';
-    		matriz [17][4] = 'A';
+    		territorio[13].jogador = 'A';
+    		matriz [16][3] = 'A';
 		} 
 		
         if (paisesA[i] == 14){
-    		nauru.jogador = 'A';
-    		matriz [17][12] = 'A';
+    		territorio[14].jogador = 'A';
+    		matriz [16][11] = 'A';
 		} 
 		
         if (paisesA[i] == 15){
-    		palau.jogador = 'A';
-    		matriz [17][20] = 'A';
+    		territorio[15].jogador = 'A';
+    		matriz [16][19] = 'A';
 		} 
 		
         if (paisesA[i] == 16){
-    		spain.jogador = 'A';
-    		matriz [23][4] = 'A';
+    		territorio[16].jogador = 'A';
+    		matriz [22][3] = 'A';
 		} 
 
         if (paisesA[i] == 17){
-    		malta.jogador = 'A';
-    		matriz [23][12] = 'A';
+    		territorio[17].jogador = 'A';
+    		matriz [22][11] = 'A';
 		} 
 		
         if (paisesA[i] == 18){
-    		tonga.jogador = 'A';
-    		matriz [23][20] = 'A';
+    		territorio[18].jogador = 'A';
+    		matriz [22][19] = 'A';
 		} 
 		
         if (paisesA[i] == 19){
-    		qatar.jogador = 'A';
-    		matriz [17][30] = 'A';
+    		territorio[19].jogador = 'A';
+    		matriz [16][29] = 'A';
 		} 
 		
         if (paisesA[i] == 20){
-    		samda.jogador = 'A';
-    		matriz [17][38] = 'A';
+    		territorio[20].jogador = 'A';
+    		matriz [16][37] = 'A';
 		} 
 		
         if (paisesA[i] == 21){
-    		yemen.jogador = 'A';
-    		matriz [17][46] = 'A';
+    		territorio[21].jogador = 'A';
+    		matriz [16][45] = 'A';
 		} 
 		
         if (paisesA[i] == 22){
-    		syria.jogador = 'A';
-    		matriz [23][30] = 'A';
+    		territorio[22].jogador = 'A';
+    		matriz [22][29] = 'A';
 		} 
 		
         if (paisesA[i] == 23){
-    		aruba.jogador = 'A';
-    		matriz [23][38] = 'A';
+    		territorio[23].jogador = 'A';
+    		matriz [22][37] = 'A';
 		} 
 		
         if (paisesA[i] == 24){
-    		chile.jogador = 'A';
-    		matriz [23][46] = 'A';
+    		territorio[24].jogador = 'A';
+    		matriz [22][45] = 'A';
 		} 
 
 	}
@@ -290,128 +284,220 @@ int dados(){
   	for (int i = 0; i < 12; ++i){
     	
     	if (paisesB[i] == 1){
-    		ghana.jogador = 'B';
-    		matriz [1][4] = 'B';
+    		territorio[1].jogador = 'B';
+    		matriz [0][3] = 'B';
 		}
          
         if (paisesB[i] == 2){
-    		benin.jogador = 'B';
-    		matriz [1][12] = 'B';
+    		territorio[2].jogador = 'B';
+    		matriz [0][11] = 'B';
 		} 
 	
         if (paisesB[i] == 3){
-    		haiti.jogador = 'B';
-    		matriz [1][20] = 'B';
+    		territorio[3].jogador = 'B';
+    		matriz [0][19] = 'B';
 		} 
 	    
         if (paisesB[i] == 4){
-    		sudan.jogador = 'B';
-    		matriz [7][4] = 'B';
+    		territorio[4].jogador = 'B';
+    		matriz [6][3] = 'B';
 		}  
 		
         if (paisesB[i] == 5){
-    		egypt.jogador = 'B';
-    		matriz [7][12] = 'B';
+    		territorio[5].jogador = 'B';
+    		matriz [6][11] = 'B';
 		} 
 
         
         if (paisesB[i] == 6){
-    		niger.jogador = 'B';
-    		matriz [7][20] = 'B';
+    		territorio[6].jogador = 'B';
+    		matriz [6][19] = 'B';
 		} 
 
         if (paisesB[i] == 7){
-    		china.jogador = 'B';
-    		matriz [1][30] = 'B';
+    		territorio[7].jogador = 'B';
+    		matriz [0][29] = 'B';
 		} 
         
         if (paisesB[i] == 8){
-    		japan.jogador = 'B';
-    		matriz [1][38] = 'B';
+    		territorio[8].jogador = 'B';
+    		matriz [0][37] = 'B';
 		} 
          
         if (paisesB[i] == 9){
-    		macao.jogador = 'B';
-    		matriz [1][46] = 'B';
+    		territorio[9].jogador = 'B';
+    		matriz [0][45] = 'B';
 		} 
         
         if (paisesB[i] == 10){
-    		nepal.jogador = 'B';
-    		matriz [7][30] = 'B';
+    		territorio[10].jogador = 'B';
+    		matriz [6][29] = 'B';
 		} 
 		 
         if (paisesB[i] == 11){
-    		korea.jogador = 'B';
-    		matriz [7][38] = 'B';
+    		territorio[11].jogador = 'B';
+    		matriz [6][37] = 'B';
 		} 
 		
         if (paisesB[i] == 12){
-    		india.jogador = 'B';
-    		matriz [7][46] = 'B';
+    		territorio[12].jogador = 'B';
+    		matriz [6][45] = 'B';
 		} 
 		
         if (paisesB[i] == 13){
-    		italy.jogador = 'B';
-    		matriz [17][4] = 'B';
+    		territorio[13].jogador = 'B';
+    		matriz [16][3] = 'B';
 		} 
 		
         if (paisesB[i] == 14){
-    		nauru.jogador = 'B';
-    		matriz [17][12] = 'B';
+    		territorio[14].jogador = 'B';
+    		matriz [16][11] = 'B';
 		} 
 		
         if (paisesB[i] == 15){
-    		palau.jogador = 'B';
-    		matriz [17][20] = 'B';
+    		territorio[15].jogador = 'B';
+    		matriz [16][19] = 'B';
 		} 
 		
         if (paisesB[i] == 16){
-    		spain.jogador = 'B';
-    		matriz [23][4] = 'B';
+    		territorio[16].jogador = 'B';
+    		matriz [22][3] = 'B';
 		} 
 
         if (paisesB[i] == 17){
-    		malta.jogador = 'B';
-    		matriz [23][12] = 'B';
+    		territorio[17].jogador = 'B';
+    		matriz [22][11] = 'B';
 		} 
 		
         if (paisesB[i] == 18){
-    		tonga.jogador = 'B';
-    		matriz [23][20] = 'B';
+    		territorio[18].jogador = 'B';
+    		matriz [22][19] = 'B';
 		} 
 		
         if (paisesB[i] == 19){
-    		qatar.jogador = 'B';
-    		matriz [17][30] = 'B';
+    		territorio[19].jogador = 'B';
+    		matriz [16][29] = 'B';
 		} 
 		
         if (paisesB[i] == 20){
-    		samda.jogador = 'B';
-    		matriz [17][38] = 'B';
+    		territorio[20].jogador = 'B';
+    		matriz [16][37] = 'B';
 		} 
 		
         if (paisesB[i] == 21){
-    		yemen.jogador = 'B';
-    		matriz [17][46] = 'B';
+    		territorio[21].jogador = 'B';
+    		matriz [16][45] = 'B';
 		} 
 		
         if (paisesB[i] == 22){
-    		syria.jogador = 'B';
-    		matriz [23][30] = 'B';
+    		territorio[22].jogador = 'B';
+    		matriz [22][29] = 'B';
 		} 
 		
         if (paisesB[i] == 23){
-    		aruba.jogador = 'B';
-    		matriz [23][38] = 'B';
+    		territorio[23].jogador = 'B';
+    		matriz [22][37] = 'B';
 		} 
 		
         if (paisesB[i] == 24){
-    		chile.jogador = 'B';
-    		matriz [23][46] = 'B';
+    		territorio[24].jogador = 'B';
+    		matriz [22][45] = 'B';
 		} 
 
 	}
   	
   }
+  
+  
+ void IniciarTropas (){
+  	
+  	for (int i = 1; i<25; ++i){
+  		
+     	territorio[i].tropas[0] = 0;
+     	territorio[i].tropas[1] = 0;
+     	territorio[i].tropas[2] = 1;
+	  }	
+  	
+  }
+  
+  
+  void TotalPaises(void){
+  	
+  	
+  		for (int i = 1; i<25; ++i){
+  			
+  			if (territorio[i].jogador == 'A'){
+  			    totalA = totalA + 1;
+  			    
+		  }
+		  
+		    if (territorio[i].jogador == 'B'){
+		    	totalB = totalB + 1;
+			}
+  }
+  	
+  }
+  
+  
+  void DistribuirTropas(){
+  	
+	int TdispA, TdispB,  y, z, w, x, t; //TdispA = tropas disponiveis para o jogador a //TdispB  = tropas disponiveis para o jogador b
+  	
+  	
+  	TdispA = totalA/2;
+  	TdispB = totalB/2;
+  	
+  	for (int s = 0; s < (totalA/2); ++s){  
+  
+  	printf("Jogador A tem %i tropas disponiveis\nDigite o numero do pais onde deseja colocar uma tropa:\n", TdispA);
+  	scanf("%i", &x);
+  	
+  	y = territorio[x].tropas[0] * 100;
+	z = territorio[x].tropas[1]  * 10;
+	w = territorio[x].tropas[2] + y + z +1;
+	
+	territorio[x].tropas[0] = w/100;
+	territorio[x].tropas[1] = (w - territorio[x].tropas[0] * 100) / 10;
+	territorio[x].tropas[2] = (w - territorio[x].tropas[0] * 100 ) - territorio[x].tropas[1] * 10;
+  	
+  	territorio[x].coord1 =	territorio[x].tropas[0] + '0';
+  	territorio[x].coord2 =  territorio[x].tropas[1] + '0';
+  	territorio[x].coord3 =	territorio[x].tropas[2] + '0';
+	
+	printarmapa ();  
+	      	
+	  --TdispA;
+	  system("cls");	
+    
+  }
+  	for (int s = 0; s < (totalB/2); ++s){  
+  
+  	printf("Jogador B tem %i tropas disponiveis\nDigite o numero do pais onde deseja colocar uma tropa:\n", TdispB);
+  	scanf("%i", &x);
+  	
+  	y = territorio[x].tropas[0] * 100;
+	z = territorio[x].tropas[1]  * 10;
+	w = territorio[x].tropas[2] + y + z +1;
+	
+	territorio[x].tropas[0] = w/100;
+	territorio[x].tropas[1] = (w - territorio[x].tropas[0] * 100) / 10;
+	territorio[x].tropas[2] = (w - territorio[x].tropas[0] * 100 ) - territorio[x].tropas[1] * 10;
+  	
+  	territorio[x].coord1 =	territorio[x].tropas[0] + '0';
+  	territorio[x].coord2 =  territorio[x].tropas[1] + '0';
+  	territorio[x].coord3 =	territorio[x].tropas[2] + '0';
+	
+	printarmapa ();  
+  	
+	  --TdispB;
+	  system("cls");
+  	
+  }
+  
+  
+  
+}
+  
+  
 
 
