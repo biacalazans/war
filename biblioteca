@@ -9,10 +9,11 @@
    		
 		int tropas[3];
    		char jogador,coord1, coord2, coord3;   
+   		
 		   	
-	} war;
+	} territorio;
 	
-	 war territorio [25];
+   territorio territorios[25];
      
     
 int totalA, totalB;
@@ -48,6 +49,108 @@ char matriz[35][49] =    {{'1','#','#','#','#','#','#',' ','2','#','#','#','#','
                           {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
                           {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
                           {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '}};
+
+void coordenandas () {
+
+territorios[1].coord1 = matriz[1][2];	
+territorios[1].coord2 = matriz[1][3];
+territorios[1].coord3 = matriz[1][4];
+
+territorios[2].coord1 = matriz[1][10];
+territorios[2].coord2 = matriz[1][11];
+territorios[2].coord3 = matriz[1][12];
+
+territorios[3].coord1 = matriz[1][18];
+territorios[3].coord2 = matriz[1][19];
+territorios[3].coord3 = matriz[1][20];
+
+territorios[4].coord1 = matriz[7][2];
+territorios[4].coord2 = matriz[7][3];
+territorios[4].coord3 = matriz[7][4];
+
+territorios[5].coord1 = matriz[7][14];
+territorios[5].coord2 = matriz[7][13];
+territorios[5].coord3 = matriz[7][12];
+
+territorios[6].coord1 = matriz[7][18];
+territorios[6].coord2 = matriz[7][19];
+territorios[6].coord3 = matriz[1][20];
+
+territorios[7].coord1 = matriz[1][28];
+territorios[7].coord2 = matriz[1][29];
+territorios[7].coord3 = matriz[1][30];
+
+territorios[8].coord1 = matriz[1][36];
+territorios[8].coord2 = matriz[1][37];
+territorios[8].coord3 = matriz[1][38];
+
+territorios[9].coord1 = matriz[1][42];
+territorios[9].coord2 = matriz[1][43];
+territorios[9].coord3 = matriz[1][44];
+
+territorios[10].coord1 = matriz[7][28];
+territorios[10].coord2 = matriz[7][29];
+territorios[10].coord3 = matriz[7][30];
+
+territorios[11].coord1 = matriz[7][36];
+territorios[11].coord2 = matriz[7][37];
+territorios[11].coord3 = matriz[7][38];
+
+territorios[12].coord1 = matriz[7][42];
+territorios[12].coord2 = matriz[7][43];
+territorios[12].coord3 = matriz[7][44];
+
+territorios[13].coord1 = matriz[17][2];
+territorios[13].coord2 = matriz[17][3];
+territorios[13].coord3 = matriz[17][4];
+
+territorios[14].coord1 = matriz[17][10];
+territorios[14].coord2 = matriz[17][11];
+territorios[14].coord3 = matriz[17][12];
+
+territorios[15].coord1 = matriz[17][18];
+territorios[15].coord2 = matriz[18][19];
+territorios[15].coord3 = matriz[19][20];
+
+territorios[16].coord1 = matriz[23][2];
+territorios[16].coord2 = matriz[23][3];
+territorios[16].coord3 = matriz[23][4];
+
+territorios[17].coord1 = matriz[23][10];
+territorios[17].coord2 = matriz[23][11];
+territorios[17].coord3 = matriz[23][12];
+
+territorios[18].coord1 = matriz[23][18];
+territorios[18].coord2 = matriz[23][19];
+territorios[18].coord3 = matriz[23][20];
+
+territorios[19].coord1 = matriz[17][28];
+territorios[19].coord1 = matriz[17][29];
+territorios[19].coord3 = matriz[17][30];
+
+territorios[20].coord1 = matriz[17][36];
+territorios[20].coord2 = matriz[17][37];
+territorios[20].coord3 = matriz[17][28];	
+
+territorios[21].coord1 = matriz[17][42];
+territorios[21].coord2 = matriz[17][43];
+territorios[21].coord3 = matriz[17][44];
+
+territorios[22].coord1 = matriz[23][28];
+territorios[22].coord2 = matriz[23][29];
+territorios[22].coord3 = matriz[23][30];
+
+territorios[23].coord1 = matriz[23][36];
+territorios[23].coord2 = matriz[23][37];
+territorios[23].coord3 = matriz[23][38];
+
+territorios[24].coord1 = matriz[23][42];
+territorios[24].coord2 = matriz[23][43];
+territorios[24].coord3 = matriz[23][44];
+
+	
+}
+
 
 void lernome (void) {
 	
@@ -159,123 +262,123 @@ int dados(){
     for (int i = 0; i < 12; ++i){
     	
     	if (paisesA[i] == 1){
-    		territorio[1].jogador = 'A';
+    		territorios[1].jogador = 'A';
     		matriz [0][3] = 'A' ;
 		}
          
         if (paisesA[i] == 2){
-    		territorio[2].jogador = 'A';
+    		territorios[2].jogador = 'A';
     		matriz [0][11] = 'A';
 		} 
 	
         if (paisesA[i] == 3){
-        territorio[3].jogador = 'A';
+        territorios[3].jogador = 'A';
     		matriz [0][19] = 'A';
 		} 
 	    
         if (paisesA[i] == 4){
-    		territorio[4].jogador = 'A';
+    		territorios[4].jogador = 'A';
     		matriz [6][3] = 'A';
 		}  
 		
         if (paisesA[i] == 5){
-    		territorio[5].jogador = 'A';
+    		territorios[5].jogador = 'A';
     		matriz [6][11] = 'A';
 		} 
 
         
         if (paisesA[i] == 6){
-    		territorio[6].jogador = 'A';
+    		territorios[6].jogador = 'A';
     		matriz [6][19] = 'A';
 		} 
 
         if (paisesA[i] == 7){
-    		territorio[7].jogador = 'A';
+    		territorios[7].jogador = 'A';
     		matriz [0][29] = 'A';
 		} 
         
         if (paisesA[i] == 8){
-    		territorio[8].jogador = 'A';
+    		territorios[8].jogador = 'A';
     		matriz [0][37] = 'A';
 		} 
          
         if (paisesA[i] == 9){
-    		territorio[9].jogador = 'A';
+    		territorios[9].jogador = 'A';
     		matriz [0][45] = 'A';
 		} 
         
         if (paisesA[i] == 10){
-    		territorio[10].jogador = 'A';
+    		territorios[10].jogador = 'A';
     		matriz [6][29] = 'A';
 		} 
 		 
         if (paisesA[i] == 11){
-    		territorio[11].jogador = 'A';
+    		territorios[11].jogador = 'A';
     		matriz [6][37] = 'A';
 		} 
 		
         if (paisesA[i] == 12){
-    		territorio[12].jogador = 'A';
+    		territorios[12].jogador = 'A';
     		matriz [6][45] = 'A';
 		} 
 		
         if (paisesA[i] == 13){
-    		territorio[13].jogador = 'A';
+    		territorios[13].jogador = 'A';
     		matriz [16][3] = 'A';
 		} 
 		
         if (paisesA[i] == 14){
-    		territorio[14].jogador = 'A';
+    		territorios[14].jogador = 'A';
     		matriz [16][11] = 'A';
 		} 
 		
         if (paisesA[i] == 15){
-    		territorio[15].jogador = 'A';
+    		territorios[15].jogador = 'A';
     		matriz [16][19] = 'A';
 		} 
 		
         if (paisesA[i] == 16){
-    		territorio[16].jogador = 'A';
+    		territorios[16].jogador = 'A';
     		matriz [22][3] = 'A';
 		} 
 
         if (paisesA[i] == 17){
-    		territorio[17].jogador = 'A';
+    		territorios[17].jogador = 'A';
     		matriz [22][11] = 'A';
 		} 
 		
         if (paisesA[i] == 18){
-    		territorio[18].jogador = 'A';
+    		territorios[18].jogador = 'A';
     		matriz [22][19] = 'A';
 		} 
 		
         if (paisesA[i] == 19){
-    		territorio[19].jogador = 'A';
+    		territorios[19].jogador = 'A';
     		matriz [16][29] = 'A';
 		} 
 		
         if (paisesA[i] == 20){
-    		territorio[20].jogador = 'A';
+    		territorios[20].jogador = 'A';
     		matriz [16][37] = 'A';
 		} 
 		
         if (paisesA[i] == 21){
-    		territorio[21].jogador = 'A';
+    		territorios[21].jogador = 'A';
     		matriz [16][45] = 'A';
 		} 
 		
         if (paisesA[i] == 22){
-    		territorio[22].jogador = 'A';
+    		territorios[22].jogador = 'A';
     		matriz [22][29] = 'A';
 		} 
 		
         if (paisesA[i] == 23){
-    		territorio[23].jogador = 'A';
+    		territorios[23].jogador = 'A';
     		matriz [22][37] = 'A';
 		} 
 		
         if (paisesA[i] == 24){
-    		territorio[24].jogador = 'A';
+    		territorios[24].jogador = 'A';
     		matriz [22][45] = 'A';
 		} 
 
@@ -284,123 +387,123 @@ int dados(){
   	for (int i = 0; i < 12; ++i){
     	
     	if (paisesB[i] == 1){
-    		territorio[1].jogador = 'B';
+    		territorios[1].jogador = 'B';
     		matriz [0][3] = 'B';
 		}
          
         if (paisesB[i] == 2){
-    		territorio[2].jogador = 'B';
+    		territorios[2].jogador = 'B';
     		matriz [0][11] = 'B';
 		} 
 	
         if (paisesB[i] == 3){
-    		territorio[3].jogador = 'B';
+    		territorios[3].jogador = 'B';
     		matriz [0][19] = 'B';
 		} 
 	    
         if (paisesB[i] == 4){
-    		territorio[4].jogador = 'B';
+    		territorios[4].jogador = 'B';
     		matriz [6][3] = 'B';
 		}  
 		
         if (paisesB[i] == 5){
-    		territorio[5].jogador = 'B';
+    		territorios[5].jogador = 'B';
     		matriz [6][11] = 'B';
 		} 
 
         
         if (paisesB[i] == 6){
-    		territorio[6].jogador = 'B';
+    		territorios[6].jogador = 'B';
     		matriz [6][19] = 'B';
 		} 
 
         if (paisesB[i] == 7){
-    		territorio[7].jogador = 'B';
+    		territorios[7].jogador = 'B';
     		matriz [0][29] = 'B';
 		} 
         
         if (paisesB[i] == 8){
-    		territorio[8].jogador = 'B';
+    		territorios[8].jogador = 'B';
     		matriz [0][37] = 'B';
 		} 
          
         if (paisesB[i] == 9){
-    		territorio[9].jogador = 'B';
+    		territorios[9].jogador = 'B';
     		matriz [0][45] = 'B';
 		} 
         
         if (paisesB[i] == 10){
-    		territorio[10].jogador = 'B';
+    		territorios[10].jogador = 'B';
     		matriz [6][29] = 'B';
 		} 
 		 
         if (paisesB[i] == 11){
-    		territorio[11].jogador = 'B';
+    		territorios[11].jogador = 'B';
     		matriz [6][37] = 'B';
 		} 
 		
         if (paisesB[i] == 12){
-    		territorio[12].jogador = 'B';
+    		territorios[12].jogador = 'B';
     		matriz [6][45] = 'B';
 		} 
 		
         if (paisesB[i] == 13){
-    		territorio[13].jogador = 'B';
+    		territorios[13].jogador = 'B';
     		matriz [16][3] = 'B';
 		} 
 		
         if (paisesB[i] == 14){
-    		territorio[14].jogador = 'B';
+    		territorios[14].jogador = 'B';
     		matriz [16][11] = 'B';
 		} 
 		
         if (paisesB[i] == 15){
-    		territorio[15].jogador = 'B';
+    		territorios[15].jogador = 'B';
     		matriz [16][19] = 'B';
 		} 
 		
         if (paisesB[i] == 16){
-    		territorio[16].jogador = 'B';
+    		territorios[16].jogador = 'B';
     		matriz [22][3] = 'B';
 		} 
 
         if (paisesB[i] == 17){
-    		territorio[17].jogador = 'B';
+    		territorios[17].jogador = 'B';
     		matriz [22][11] = 'B';
 		} 
 		
         if (paisesB[i] == 18){
-    		territorio[18].jogador = 'B';
+    		territorios[18].jogador = 'B';
     		matriz [22][19] = 'B';
 		} 
 		
         if (paisesB[i] == 19){
-    		territorio[19].jogador = 'B';
+    		territorios[19].jogador = 'B';
     		matriz [16][29] = 'B';
 		} 
 		
         if (paisesB[i] == 20){
-    		territorio[20].jogador = 'B';
+    		territorios[20].jogador = 'B';
     		matriz [16][37] = 'B';
 		} 
 		
         if (paisesB[i] == 21){
-    		territorio[21].jogador = 'B';
+    		territorios[21].jogador = 'B';
     		matriz [16][45] = 'B';
 		} 
 		
         if (paisesB[i] == 22){
-    		territorio[22].jogador = 'B';
+    		territorios[22].jogador = 'B';
     		matriz [22][29] = 'B';
 		} 
 		
         if (paisesB[i] == 23){
-    		territorio[23].jogador = 'B';
+    		territorios[23].jogador = 'B';
     		matriz [22][37] = 'B';
 		} 
 		
         if (paisesB[i] == 24){
-    		territorio[24].jogador = 'B';
+    		territorios[24].jogador = 'B';
     		matriz [22][45] = 'B';
 		} 
 
@@ -413,9 +516,9 @@ int dados(){
   	
   	for (int i = 1; i<25; ++i){
   		
-     	territorio[i].tropas[0] = 0;
-     	territorio[i].tropas[1] = 0;
-     	territorio[i].tropas[2] = 1;
+     	territorios[i].tropas[0] = 0;
+     	territorios[i].tropas[1] = 0;
+     	territorios[i].tropas[2] = 1;
 	  }	
   	
   }
@@ -426,12 +529,12 @@ int dados(){
   	
   		for (int i = 1; i<25; ++i){
   			
-  			if (territorio[i].jogador == 'A'){
+  			if (territorios[i].jogador == 'A'){
   			    totalA = totalA + 1;
   			    
 		  }
 		  
-		    if (territorio[i].jogador == 'B'){
+		    if (territorios[i].jogador == 'B'){
 		    	totalB = totalB + 1;
 			}
   }
@@ -441,53 +544,58 @@ int dados(){
   
   void DistribuirTropas(){
   	
+  	
+  	
 	int TdispA, TdispB,  y, z, w, x, t; //TdispA = tropas disponiveis para o jogador a //TdispB  = tropas disponiveis para o jogador b
   	
   	
   	TdispA = totalA/2;
   	TdispB = totalB/2;
   	
+  	
+  	
   	for (int s = 0; s < (totalA/2); ++s){  
+  	printarmapa();
   
   	printf("Jogador A tem %i tropas disponiveis\nDigite o numero do pais onde deseja colocar uma tropa:\n", TdispA);
   	scanf("%i", &x);
   	
-  	y = territorio[x].tropas[0] * 100;
-	z = territorio[x].tropas[1]  * 10;
-	w = territorio[x].tropas[2] + y + z +1;
+  	y = territorios[x].tropas[0] * 100;
+	z = territorios[x].tropas[1]  * 10;
+	w = territorios[x].tropas[2] + y + z +1;
 	
-	territorio[x].tropas[0] = w/100;
-	territorio[x].tropas[1] = (w - territorio[x].tropas[0] * 100) / 10;
-	territorio[x].tropas[2] = (w - territorio[x].tropas[0] * 100 ) - territorio[x].tropas[1] * 10;
+	territorios[x].tropas[0] = w/100;
+	territorios[x].tropas[1] = (w - territorios[x].tropas[0] * 100) / 10;
+	territorios[x].tropas[2] = (w - territorios[x].tropas[0] * 100 ) - territorios[x].tropas[1] * 10;
   	
-  	territorio[x].coord1 =	territorio[x].tropas[0] + '0';
-  	territorio[x].coord2 =  territorio[x].tropas[1] + '0';
-  	territorio[x].coord3 =	territorio[x].tropas[2] + '0';
+  	territorios[x].coord1 =	territorios[x].tropas[0] + '0';
+  	territorios[x].coord2 = territorios[x].tropas[1] + '0';
+  	territorios[x].coord3 =	territorios[x].tropas[2] + '0';
 	
-	printarmapa ();  
+	
 	      	
 	  --TdispA;
 	  system("cls");	
     
   }
   	for (int s = 0; s < (totalB/2); ++s){  
+  	
+  	printarmapa (); 
   
   	printf("Jogador B tem %i tropas disponiveis\nDigite o numero do pais onde deseja colocar uma tropa:\n", TdispB);
   	scanf("%i", &x);
   	
-  	y = territorio[x].tropas[0] * 100;
-	z = territorio[x].tropas[1]  * 10;
-	w = territorio[x].tropas[2] + y + z +1;
+  	y = territorios[x].tropas[0] * 100;
+	z = territorios[x].tropas[1]  * 10;
+	w = territorios[x].tropas[2] + y + z +1;
 	
-	territorio[x].tropas[0] = w/100;
-	territorio[x].tropas[1] = (w - territorio[x].tropas[0] * 100) / 10;
-	territorio[x].tropas[2] = (w - territorio[x].tropas[0] * 100 ) - territorio[x].tropas[1] * 10;
+	territorios[x].tropas[0] = w/100;
+	territorios[x].tropas[1] = (w - territorios[x].tropas[0] * 100) / 10;
+	territorios[x].tropas[2] = (w - territorios[x].tropas[0] * 100 ) - territorios[x].tropas[1] * 10;
   	
-  	territorio[x].coord1 =	territorio[x].tropas[0] + '0';
-  	territorio[x].coord2 =  territorio[x].tropas[1] + '0';
-  	territorio[x].coord3 =	territorio[x].tropas[2] + '0';
-	
-	printarmapa ();  
+  	territorios[x].coord1 =	territorios[x].tropas[0] + '0';
+  	territorios[x].coord2 =  territorios[x].tropas[1] + '0';
+  	territorios[x].coord3 =	territorios[x].tropas[2] + '0'; 
   	
 	  --TdispB;
 	  system("cls");
