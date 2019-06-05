@@ -1,0 +1,15 @@
+void DefininirFronteiras () {
+	
+	territorios[1].fronteiras[0] = 2;
+	territorios[1].fronteiras[1] = 4;
+	
+	territorios[2].fronteiras[0] = 1;
+	territorios[2].fronteiras[1] = 5;
+	territorios[2].fronteiras[2] = 3;
+	
+	
+	
+	
+	
+	
+}
