@@ -7,8 +7,90 @@ void DefininirFronteiras () {
 	territorios[2].fronteiras[1] = 5;
 	territorios[2].fronteiras[2] = 3;
 	
+	territorios[3].fronteiras[0] = 2;
+	territorios[3].fronteiras[1] = 6;
+	territorios[3].fronteiras[2] = 7;
 	
+	territorios[4].fronteiras[0] = 1;
+	territorios[4].fronteiras[1] = 5;
 	
+	territorios[5].fronteiras[0] = 2;
+	territorios[5].fronteiras[1] = 4;
+	territorios[5].fronteiras[2] = 6;
+	territorios[5].fronteiras[3] = 14;
+
+	territorios[6].fronteiras[0] = 3;
+	territorios[6].fronteiras[1] = 5;
+	territorios[6].fronteiras[2] = 10;
+	
+	territorios[7].fronteiras[0] = 3;
+	territorios[7].fronteiras[1] = 8;
+	territorios[7].fronteiras[2] = 10;
+	
+	territorios[8].fronteiras[0] = 7;
+	territorios[8].fronteiras[1] = 9;
+	territorios[8].fronteiras[2] = 11;
+	
+	territorios[9].fronteiras[0] = 8;
+	territorios[9].fronteiras[1] = 12;	
+	
+	territorios[10].fronteiras[0] = 6;
+	territorios[10].fronteiras[1] = 7;
+	territorios[10].fronteiras[2] = 11;
+	
+	territorios[11].fronteiras[0] = 8;
+	territorios[11].fronteiras[1] = 10;
+	territorios[11].fronteiras[2] = 12;
+	territorios[11].fronteiras[3] = 20;
+	
+	territorios[12].fronteiras[0] = 9;
+	territorios[12].fronteiras[1] = 11;
+	
+	territorios[13].fronteiras[0] = 14;
+	territorios[13].fronteiras[1] = 16;
+	
+	territorios[14].fronteiras[0] = 5;
+	territorios[14].fronteiras[1] = 13;
+	territorios[14].fronteiras[2] = 15;
+	territorios[14].fronteiras[3] = 17;
+	
+	territorios[15].fronteiras[0] = 14;
+	territorios[15].fronteiras[1] = 18;
+	territorios[15].fronteiras[2] = 19;
+	
+	territorios[16].fronteiras[0] = 13;
+	territorios[16].fronteiras[1] = 17;
+	
+	territorios[17].fronteiras[0] = 14;
+	territorios[17].fronteiras[1] = 16;
+	territorios[17].fronteiras[2] = 18;
+	
+	territorios[18].fronteiras[0] = 15;
+	territorios[18].fronteiras[1] = 17;
+	territorios[18].fronteiras[2] = 22;
+	
+	territorios[19].fronteiras[0] = 15;
+	territorios[19].fronteiras[1] = 20;
+	territorios[19].fronteiras[2] = 22;
+	
+	territorios[20].fronteiras[0] = 11;
+	territorios[20].fronteiras[1] = 19;
+	territorios[20].fronteiras[2] = 21;
+	territorios[20].fronteiras[3] = 23;
+	
+	territorios[21].fronteiras[0] = 20;
+	territorios[21].fronteiras[1] = 24;
+	
+	territorios[22].fronteiras[0] = 18;
+	territorios[22].fronteiras[1] = 19;
+	territorios[22].fronteiras[2] = 23;
+	
+	territorios[23].fronteiras[0] = 20;
+	territorios[23].fronteiras[1] = 22;
+	territorios[23].fronteiras[2] = 24;
+	
+	territorios[24].fronteiras[0] = 23;
+	territorios[24].fronteiras[1] = 21;
 	
 	
 	
