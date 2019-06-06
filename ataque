@@ -1,0 +1,74 @@
+void DADOS(){ //limita o numero de dados de acordo com o numero de tropas
+
+int resultado, i = 0;
+dados();
+srand(time(NULL));
+
+if ((territorios[x].tropas[2] == 1) && (territorios[x].tropas[1] != 0) && (territorios[x].tropas[0] != 0 )){
+	printf("Voce so pode atacar com mais de uma tropa no pais!")
+}
+
+if((teritorios[x].tropas[2] == 2) && (territorios[x].tropas[1] != 0) && (territorios[x].tropas[0] != 0 )){
+	resultado = dados();
+}
+
+if ((territorios[x].tropas[2] == 3) && (territorios[x].tropas[1] != 0) && (territorios[x].tropas[0] != 0 )) {
+	
+	while(i<2){
+		resultado = dados();
+		++i;
+	}
+ } else {
+ 	while(i<3){
+		resultado = dados();
+		++i;
+	}
+ 	
+ }
+
+}
+
+
+
+int dados(){
+
+	int result;
+
+	result=(rand()%6)+1;
+
+  return result;
+}
+
+
+void ataque (){
+
+fronteiras ();
+Ojogador ();
+
+int x, y;
+
+printf("Jogador %c, digite o numero do pais origem do ataque:\n", jogadorDaVez);
+scanf("%i", &x);
+
+printf("Digite o país que deseja atacar (lembre-se que so se pode atacar paises que façam fronteira com o de origem)");
+scanf("%i", &y)
+
+  //limitar o ataque aos paises que facam fronteira com o pais de origem
+	if((territorio[x].fronteiras[0] == y) || (territorio[x].fronteiras[1] == y) || (territorio[2].fronteiras[i] == y) 
+	|| (territorio[3].fronteiras[i] == y)&& (territorios[y].jogador == 'B')){
+		
+	   DADOS();
+	   
+	   
+	   
+	   
+	   
+	   
+	}
+
+
+
+
+
+
+  
