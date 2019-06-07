@@ -2,36 +2,24 @@
 
 int main(){
 	
-	printf("|");printf("                                              |\n");                                         
-	printf(" |");printf("                                            |\n");                                          
-	printf("  |");printf("                                          |\n");                                          
-	printf("   |");printf("                                        |\n");                                                                                 
-	printf("    |");printf("                  |");printf("|");printf("                  |\n");
-	printf("     |");printf("                |");printf("  |");printf("                |");printf("           |\n");
-	printf("      |");printf("              |");printf("    |");printf("              |");printf("           |\n");
-	printf("       |");printf("            |");printf("      |");printf("            |");printf("           |\n");
-	printf("        |");printf("          |");printf("        |");printf("          |");printf("           |\n"); 
-	printf("         |");printf("        |");printf("          |");printf("        |");printf("           |\n");
-	printf("          |");printf("      |");printf("            |");printf("      |");printf("           |\n");
-     printf("           |");printf("    |");printf("              |");printf("    |");  printf("           |\n");
-     printf("            |");printf("  |");printf("                |");printf("  |");   printf("           |\n");      
-     printf("             |");printf("|"); printf("                  |");printf("|");   printf("           |\n");
+	printf(" ");printf("                                              \n");                                         
+	printf(" ||");printf("                                            ||\n");                                          
+	printf("  ||");printf("                                          ||");                                                   printf("                          |||||||||||||||||||||\n");
+	printf("   ||");printf("                                        ||");                                                      printf("                           ||");printf("                  |\n");                          
+	printf("    ||");printf("                  ||");printf("                  ||");printf("           ||");printf("||");printf("             ||");printf("                  |\n");
+	printf("     ||");printf("               ||");printf("  ||");printf("               ||");printf("           ||");printf("  ||");printf("            ||");printf("                  |\n");
+	printf("      ||");printf("             ||");printf("    ||");printf("             ||");printf("           ||");printf("    ||");printf("           ||");printf("                  |\n");
+	printf("       ||");printf("           ||");printf("      ||");printf("           ||");printf("           ||");printf("      ||");printf("          ||");printf("|||||||||||||||||||\n");
+	printf("        ||");printf("         ||");printf("        ||");printf("         ||");printf("           ||");printf("        ||");printf("         ||");printf("  ||\n");
+	printf("         ||");printf("       ||");printf("          ||");printf("       ||  ");printf("          |||||||||||");printf("|");printf("         ||");printf("    ||\n");
+	printf("          ||");printf("     ||");printf("            ||");printf("     ||");printf("           ||");printf("            ||");printf("       ||");printf("      ||\n");
+     printf("           ||");printf("   ||");printf("              ||");printf("   ||");  printf("           ||");printf("              ||");printf("      ||");printf("       ||\n");
+     printf("            ||");printf(" ||");printf("                ||");printf(" ||");   printf("           ||");printf("                ||");printf("     ||");printf("        ||\n");  
+     printf("             |");printf("|"); printf("                   |");printf("|");   printf("            ||");printf("                  ||");printf("    ||");printf("         ||\n\n\n\n");
+     
+     printf("                                          PRESSIONE UMA TECLA PARA CONTINUAR\n");
      
      
      
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-
-	    return 0;
-	    
-	
-}
+     return 0;
+ }    
