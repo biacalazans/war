@@ -3,172 +3,172 @@
 #include <conio.h>
 #include <stdlib.h>
 
-void jogo_de_dados(int PDA, int SDA, int TDA, int PDB, int SDB, int TDB){
+void jogo_de_dados(int PDX, int SDX, int TDX, int PDY, int SDY, int TDY){
 
-	int MaxA, MnA, MA, MaxB, MnB, MB;
+	int MaX, MnX, MX, MaY, MnY, MY;
 
-	MaxA=0;
-	MnA=0;
-	MA=0; 
-	MaxB=0;
-	MnB=0;
-	MB=0; 
+	MaX=0;
+	MnX=0;
+	MX=0; 
+	MaY=0;
+	MnY=0;
+	MY=0; 
 
-	//PDA
-	if (PDA>SDA){
-		if(PDA>TDA){MaxA=PDA;}
-		if (PDA<TDA){MA=PDA;}
+	//PDX
+	if (PDX>SDX){
+		if(PDX>TDX){MaX=PDX;}
+		if (PDX<TDX){MX=PDX;}
 	}
-	if (PDA<SDA){
-		if (PDA>TDA){MA=PDA;}
-		if(PDA<TDA){MnA=PDA;}
+	if (PDX<SDX){
+		if (PDX>TDX){MX=PDX;}
+		if(PDX<TDX){MnX=PDX;}
 	}
 	
-	//SDA
-	if (SDA>PDA){
-		if(SDA>TDA){MaxA=SDA;}
-		if(SDA<TDA){MA=SDA;}
+	//SDX
+	if (SDX>PDX){
+		if(SDX>TDX){MaX=SDX;}
+		if(SDX<TDX){MX=SDX;}
 	}
-	if (SDA<PDA){
-		if(SDA>TDA){MA=SDA;}
-		if(SDA<TDA){MnA=SDA;}
+	if (SDX<PDX){
+		if(SDX>TDX){MX=SDX;}
+		if(SDX<TDX){MnX=SDX;}
 	}
 	
-	//TDA
-	if (TDA>PDA){
-		if(TDA>SDA){MaxA=TDA;}
-		if(TDA<SDA){MA=TDA;}
+	//TDX
+	if (TDX>PDX){
+		if(TDX>SDX){MaX=TDX;}
+		if(TDX<SDX){MX=TDX;}
 	}
-	if (TDA<PDA){
-		if(TDA>SDA){MA=TDA;}
-		if(TDA<SDA){MnA=TDA;}
+	if (TDX<PDX){
+		if(TDX>SDX){MX=TDX;}
+		if(TDX<SDX){MnX=TDX;}
 	}
 	
 	//Igualdades no Dado A
-	if(PDA==SDA){
-		if(PDA>TDA){
-			MaxA=PDA;
-			MA=SDA;
-			MnA=TDA;
+	if(PDX==SDX){
+		if(PDX>TDX){
+			MaX=PDX;
+			MX=SDX;
+			MnX=TDX;
 		}
-		if(PDA<TDA){
-			MaxA=TDA;
-			MA=SDA;
-			MnA=PDA;
-		}
-	}
-	if(SDA==TDA){
-		if(SDA>PDA){
-			MaxA=TDA;
-			MA=SDA;
-			MnA=PDA;
-		}
-		if(SDA<PDA){
-			MaxA=PDA;
-			MA=SDA;
-			MnA=TDA;
+		if(PDX<TDX){
+			MaX=TDX;
+			MX=SDX;
+			MnX=PDX;
 		}
 	}
-	if(TDA==PDA){
-		if(TDA>SDA){
-			MaxA=TDA;
-			MA=PDA;
-			MnA=SDA;
+	if(SDX==TDX){
+		if(SDX>PDX){
+			MaX=TDX;
+			MX=SDX;
+			MnX=PDX;
 		}
-		if(TDA<SDA){
-			MaxA=SDA;
-			MA=PDA;
-			MnA=TDA;
+		if(SDX<PDX){
+			MaX=PDX;
+			MX=SDX;
+			MnX=TDX;
+		}
+	}
+	if(TDX==PDX){
+		if(TDX>SDX){
+			MaX=TDX;
+			MX=PDX;
+			MnX=SDX;
+		}
+		if(TDX<SDX){
+			MaX=SDX;
+			MX=PDX;
+			MnX=TDX;
 		}
 	}
 
-	//PDB
-	if (PDB>SDB){
-		if(PDB>TDB){MaxB=PDB;}
-		if(PDB<TDB){MB=PDB;}
+	//PDY
+	if (PDY>SDY){
+		if(PDY>TDY){MaY=PDY;}
+		if(PDY<TDY){MY=PDY;}
 	}
-	if (PDB<SDB){
-		if(PDB>TDB){MB=PDB;}
-		if(PDB<TDB){MnB=PDB;}
-	}
-
-	//SDB
-	if (SDB>PDB){
-		if(SDB>TDB){MaxB=SDB;}
-		if(SDB<TDB){MB=SDB;}
-	}
-	if (SDB<PDB){
-		if(SDB>TDB){MB=SDB;}
-		if(SDB<TDB){MnB=SDB;}
+	if (PDY<SDY){
+		if(PDY>TDY){MY=PDY;}
+		if(PDY<TDY){MnY=PDY;}
 	}
 
-	//TDB
-	if (TDB>PDB){
-		if(TDB>SDB){MaxB=TDB;}
-		if(TDB<SDB){MB=TDB;}
+	//SDY
+	if (SDY>PDY){
+		if(SDY>TDY){MaY=SDY;}
+		if(SDY<TDY){MY=SDY;}
 	}
-	if (TDB<PDB){
-		if(TDB>SDB){MB=TDB;}
-		if(TDB<SDB){MnB=TDB;}
+	if (SDY<PDY){
+		if(SDY>TDY){MY=SDY;}
+		if(SDY<TDY){MnY=SDY;}
+	}
+
+	//TDY
+	if (TDY>PDY){
+		if(TDY>SDY){MaY=TDY;}
+		if(TDY<SDY){MY=TDY;}
+	}
+	if (TDY<PDY){
+		if(TDY>SDY){MY=TDY;}
+		if(TDY<SDY){MnY=TDY;}
 	}
 	
 	//Igualdades no Dado B
-	if(PDB==SDB){
-		if(PDB>TDB){
-			MaxB=PDB;
-			MB=SDB;
-			MnB=TDB;
+	if(PDY==SDY){
+		if(PDY>TDY){
+			MaY=PDY;
+			MY=SDY;
+			MnY=TDY;
 		}
-		if(PDB<TDB){
-			MaxB=TDB;
-			MB=SDB;
-			MnB=PDB;
-		}
-	}
-	if(SDB==TDB){
-		if(SDB>PDB){
-			MaxB=TDB;
-			MB=SDB;
-			MnB=PDB;
-		}
-		if(SDB<PDB){
-			MaxB=PDB;
-			MB=SDB;
-			MnB=TDB;
+		if(PDY<TDY){
+			MaY=TDY;
+			MY=SDY;
+			MnY=PDY;
 		}
 	}
-	if(TDB==PDB){
-		if(TDB>SDB){
-			MaxB=TDB;
-			MB=PDB;
-			MnB=SDB;
+	if(SDY==TDY){
+		if(SDY>PDY){
+			MaY=TDY;
+			MY=SDY;
+			MnY=PDY;
 		}
-		if(TDB<SDB){
-			MaxB=SDB;
-			MB=PDB;
-			MnB=TDB;
+		if(SDY<PDY){
+			MaY=PDY;
+			MY=SDY;
+			MnY=TDY;
+		}
+	}
+	if(TDY==PDY){
+		if(TDY>SDY){
+			MaY=TDY;
+			MY=PDY;
+			MnY=SDY;
+		}
+		if(TDY<SDY){
+			MaY=SDY;
+			MY=PDY;
+			MnY=TDY;
 		}
 	}
 	
 	//Ataque X Defesa
 
-	// MaxA Vs MaxB
-	if (MaxA>MaxB) {printf("%d VS %d: Ataque vence!\n", MaxA, MaxB);}
-	if (MaxA<MaxB) {printf("%d VS %d: Defesa vence!\n", MaxA, MaxB);}
-	if (MaxA==MaxB) {printf("%d VS %d: Defesa vence!\n", MaxA, MaxB);}
+	// MaX Vs MaY
+	if (MaX>MaY) {printf("%d VS %d: Ataque vence!\n", MaX, MaY);}
+	if (MaX<MaY) {printf("%d VS %d: Defesa vence!\n", MaX, MaY);}
+	if (MaX==MaY) {printf("%d VS %d: Defesa vence!\n", MaX, MaY);}
 	
-	// MA Vs MB
-	if(MA != 0 && MB != 0){
-	if (MA>MB) {printf("%d VS %d: Ataque vence!\n", MA, MB);}
-	if (MA<MB) {printf("%d VS %d: Defesa vence!\n", MA, MB);}
-	if (MA==MB) {printf("%d VS %d: Defesa vence!\n", MA, MB);}
+	// MX Vs MY
+	if(MX != 0 && MY != 0){
+	if (MX>MY) {printf("%d VS %d: Ataque vence!\n", MX, MY);}
+	if (MX<MY) {printf("%d VS %d: Defesa vence!\n", MX, MY);}
+	if (MX==MY) {printf("%d VS %d: Defesa vence!\n", MX, MY);}
 	}
 	
-	// MnA Vs MnB
-	if(MnA != 0 && MnB != 0){
-	if (MnA>MnB) {printf("%d VS %d: Ataque vence!\n", MnA, MnB);}
-	if (MnA<MnB) {printf("%d VS %d: Defesa vence!\n", MnA, MnB);}
-	if (MnA==MnB) {printf("%d VS %d: Defesa vence!\n", MnA, MnB);}
+	// MnX Vs MnY
+	if(MnX != 0 && MnY != 0){
+	if (MnX>MnY) {printf("%d VS %d: Ataque vence!\n", MnX, MnY);}
+	if (MnX<MnY) {printf("%d VS %d: Defesa vence!\n", MnX, MnY);}
+	if (MnX==MnY) {printf("%d VS %d: Defesa vence!\n", MnX, MnY);}
 	}
 
 	
@@ -177,11 +177,11 @@ void jogo_de_dados(int PDA, int SDA, int TDA, int PDB, int SDB, int TDB){
 
 int main(){
 	
-	int PDA, SDA, TDA, PDB, SDB, TDB;
+	int PDX, SDX, TDX, PDY, SDY, TDY;
 	
-	scanf("%d %d %d %d %d %d", &PDA, &SDA, &TDA, &PDB, &SDB, &TDB);
+	scanf("%d %d %d %d %d %d", &PDX, &SDX, &TDX, &PDY, &SDY, &TDY);
 	
-	jogo_de_dados(PDA, SDA, TDA, PDB, SDB, TDB);
+	jogo_de_dados(PDX, SDX, TDX, PDY, SDY, TDY);
 	
 	return 0;
 }
