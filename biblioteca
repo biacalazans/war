@@ -8,149 +8,277 @@
     typedef struct {
    		
 		int tropas[3];
-   		char jogador,coord1, coord2, coord3;   
+   		char jogador;
+		char *coord1, *coord2, *coord3, *coord4;  
+		int fronteiras[4];    
    		
 		   	
 	} territorio;
 	
    territorio territorios[25];
-     
-    
+   
+int MaxX, MnX, MX, MaxY, MnY, MY,at,de;
+int PDX,  SDX,  TDX,  PDY, SDY, TDY ;   
+char jogadorDaVez, segundoJogador;    
 int totalA, totalB;
 char playera [51], playerb [51];
 int paises[24], paisesA [12], paisesB[12];
 int achou(int x);
-char matriz[35][49] =    {{'1','#','#','#','#','#','#',' ','2','#','#','#','#','#','#',' ','3','#','#','#','#','#','#',' ',' ',' ','7','#','#','#','#','#','#',' ','8','#','#','#','#','#','#',' ','9','#','#','#','#','#','#'},
-                          {'#',' ','0','0','1',' ','#','=','#',' ','0','0','1',' ','#','=','#',' ','0','0','1',' ','#','=','=','=','#',' ','0','0','1',' ','#','=','#',' ','0','0','1',' ','#','=','#',' ','0','0','1',' ','#'},
-                          {'#','G','H','A','N','A','#','=','#','B','E','N','I','N','#','=','#','H','A','I','T','I','#','=','=','=','#','C','H','I','N','A','#','=','#','J','A','P','A','N','#','=','#','M','A','C','A','O','#'},
-                          {'#','#','#','#','#','#','#',' ','#','#','#','#','#','#','#',' ','#','#','#','#','#','#','#',' ',' ',' ','#','#','#','#','#','#','#',' ','#','#','#','#','#','#','#',' ','#','#','#','#','#','#','#'},
-                          {' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' '},
-                          {' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' '},
-                          {'4','#','#','#','#','#','#',' ','5','#','#','#','#','#','#',' ','6','#','#','#','#','#','#',' ',' ',' ','1','0','#','#','#','#','#',' ','1','1','#','#','#','#','#',' ','1','2','#','#','#','#','#'},
-                          {'#',' ','0','0','1',' ','#','=','#',' ','0','0','1',' ','#','=','#',' ','0','0','1',' ','#','=','=','=','#',' ','0','0','1',' ','#','=','#',' ','0','0','1',' ','#','=','#',' ','0','0','1',' ','#'},
-                          {'#','S','U','D','A','N','#','=','#','E','G','Y','P','T','#','=','#','N','I','G','E','R','#','=','=','=','#','N','E','P','A','L','#','=','#','K','O','R','E','A','#','=','#','I','N','D','I','A','#'},
-                          {'#','#','#','#','#','#','#',' ','#','#','#','#','#','#','#',' ','#','#','#','#','#','#','#',' ',' ',' ','#','#','#','#','#','#','#',' ','#','#','#','#','#','#','#',' ','#','#','#','#','#','#','#'},
-                          {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
-                          {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
-                          {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
-                          {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
-                          {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
-                          {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
-                          {'1','3','#','#','#','#','#',' ','1','4','#','#','#','#','#',' ','1','5','#','#','#','#','#',' ',' ',' ','1','9','#','#','#','#','#',' ','2','0','#','#','#','#','#',' ','2','1','#','#','#','#','#'},
-                          {'#',' ','0','0','1',' ','#','=','#',' ','0','0','1',' ','#','=','#',' ','0','0','1',' ','#','=','=','=','#',' ','0','0','1',' ','#','=','#',' ','0','0','1',' ','#','=','#',' ','0','0','1',' ','#'},
-                          {'#','I','T','A','L','Y','#','=','#','N','A','U','R','U','#','=','#','P','A','L','A','U','#','=','=','=','#','Q','A','T','A','R','#','=','#','S','A','M','O','A','#','=','#','Y','E','M','E','N','#'},
-                          {'#','#','#','#','#','#','#',' ','#','#','#','#','#','#','#',' ','#','#','#','#','#','#','#',' ',' ',' ','#','#','#','#','#','#','#',' ','#','#','#','#','#','#','#',' ','#','#','#','#','#','#','#'},
-                          {' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' '},
-                          {' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' ',' ',' ',' ',' ','=',' ',' ',' '},
-                          {'1','6','#','#','#','#','#',' ','1','7','#','#','#','#','#',' ','1','8','#','#','#','#','#','=','=','=','2','2','#','#','#','#','#',' ','2','3','#','#','#','#','#',' ','2','4','#','#','#','#','#'},
-                          {'#',' ','0','0','1',' ','#','=','#',' ','0','0','1',' ','#','=','#',' ','0','0','1',' ','#','=','=','=','#',' ','0','0','1',' ','#','=','#',' ','0','0','1',' ','#','=','#',' ','0','0','1',' ','#'},
-                          {'#','S','P','A','I','N','#','=','#','M','A','L','T','A','#','=','#','T','O','N','G','A','#',' ',' ',' ','#','S','Y','R','I','A','#','=','#','A','R','U','B','A','#','=','#','C','H','I','L','E','#'},
-                          {'#','#','#','#','#','#','#',' ','#','#','#','#','#','#','#',' ','#','#','#','#','#','#','#',' ',' ',' ','#','#','#','#','#','#','#',' ','#','#','#','#','#','#','#',' ','#','#','#','#','#','#','#'},
+char matriz[35][49] =    {{220,220,220,220,220,220,220,' ',220,220,220,220,220,220,220,' ',220,220,220,220,220,220,220,' ',' ',' ',220,220,220,220,220,220,220,' ',220,220,220,220,220,220,220,' ',220,220,220,220,220,220,220},
+                          {219,' ','0','0','1',' ',219,207,219,' ','0','0','1',' ',219,207,219,' ','0','0','1',' ',219,207,207,207,219,' ','0','0','1',' ',219,207,219,' ','0','0','1',' ',219,207,219,' ','0','0','1',' ',219},
+                          {219,'G','H','A','N','A',219,207,219,'B','E','N','I','N',219,207,219,'H','A','I','T','I',219,207,207,207,219,'C','H','I','N','A',219,207,219,'J','A','P','A','N',219,207,219,'M','A','C','A','O',219},
+                          {223,223,223,'1',223,223,223,' ',223,223,223,'2',223,223,223,' ',223,223,223,'3',223,223,223,' ',' ',' ',223,223,223,'7',223,223,223,' ',223,223,223,'8',223,223,223,' ',223,223,223,'9',223,223,223},
+                          {' ',' ',' ',207,' ',' ',' ',' ',' ',' ',' ',207,' ',' ',' ',' ',' ',' ',' ',207,' ',' ',' ',' ',' ',' ',' ',' ',' ',207,' ',' ',' ',' ',' ',' ',' ',207,' ',' ',' ',' ',' ',' ',' ',207,' ',' ',' '},
+                          {' ',' ',' ',207,' ',' ',' ',' ',' ',' ',' ',207,' ',' ',' ',' ',' ',' ',' ',207,' ',' ',' ',' ',' ',' ',' ',' ',' ',207,' ',' ',' ',' ',' ',' ',' ',207,' ',' ',' ',' ',' ',' ',' ',207,' ',' ',' '},
+                          {220,220,220,220,220,220,220,' ',220,220,220,220,220,220,220,' ',220,220,220,220,220,220,220,' ',' ',' ',220,220,220,220,220,220,220,' ',220,220,220,220,220,220,220,' ',220,220,220,220,220,220,220},
+                          {219,' ','0','0','1',' ',219,207,219,' ','0','0','1',' ',219,207,219,' ','0','0','1',' ',219,207,207,207,219,' ','0','0','1',' ',219,207,219,' ','0','0','1',' ',219,207,219,' ','0','0','1',' ',219},
+                          {219,'S','U','D','A','N',219,207,219,'E','G','Y','P','T',219,207,219,'N','I','G','E','R',219,207,207,207,219,'N','E','P','A','L',219,207,219,'K','O','R','E','A',219,207,219,'I','N','D','I','A',219},
+                          {223,223,223,'4',223,223,223,' ',223,223,223,'5',223,223,223,' ',223,223,223,'6',223,223,223,' ',' ',' ',223,223,'1','0',223,223,223,' ',223,223,'1','1',223,223,223,' ',223,223,'1','2',223,223,223},
+                          {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',207,' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',207,' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
+                          {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',207,' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',207,' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
+                          {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',207,' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',207,' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
+                          {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',207,' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',207,' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
+                          {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',207,' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',207,' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
+                          {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',207,' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',207,' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
+                          {220,220,220,220,220,220,220,' ',220,220,220,220,220,220,220,' ',220,220,220,220,220,220,220,' ',' ',' ',220,220,220,220,220,220,220,' ',220,220,220,220,220,220,220,' ',220,220,220,220,220,220,220},
+                          {219,' ','0','0','1',' ',219,207,219,' ','0','0','1',' ',219,207,219,' ','0','0','1',' ',219,207,207,207,219,' ','0','0','1',' ',219,207,219,' ','0','0','1',' ',219,207,219,' ','0','0','1',' ',219},
+                          {219,'I','T','A','L','Y',219,207,219,'N','A','U','R','U',219,207,219,'P','A','L','A','U',219,207,207,207,219,'Q','A','T','A','R',219,207,219,'S','A','M','O','A',219,207,219,'Y','E','M','E','N',219},
+                          {223,223,'1','3',223,223,223,' ',223,223,'1','4',223,223,223,' ',223,223,'1','5',223,223,223,' ',' ',' ',223,223,'1','9',223,223,223,' ',223,223,'2','0',223,223,223,' ',223,223,'2','1',223,223,223},
+                          {' ',' ',' ',207,' ',' ',' ',' ',' ',' ',' ',207,' ',' ',' ',' ',' ',' ',' ',207,' ',' ',' ',' ',' ',' ',' ',' ',' ',207,' ',' ',' ',' ',' ',' ',' ',207,' ',' ',' ',' ',' ',' ',' ',207,' ',' ',' '},
+                          {' ',' ',' ',207,' ',' ',' ',' ',' ',' ',' ',207,' ',' ',' ',' ',' ',' ',' ',207,' ',' ',' ',' ',' ',' ',' ',' ',' ',207,' ',' ',' ',' ',' ',' ',' ',207,' ',' ',' ',' ',' ',' ',' ',207,' ',' ',' '},
+                          {220,220,220,220,220,220,220,' ',220,220,220,220,220,220,220,' ',220,220,220,220,220,220,220,' ',' ',' ',220,220,220,220,220,220,220,' ',220,220,220,220,220,220,220,' ',220,220,220,220,220,220,220},
+                          {219,' ','0','0','1',' ',219,207,219,' ','0','0','1',' ',219,207,219,' ','0','0','1',' ',219,207,207,207,219,' ','0','0','1',' ',219,207,219,' ','0','0','1',' ',219,207,219,' ','0','0','1',' ',219},
+                          {219,'S','P','A','I','N',219,207,219,'M','A','L','T','A',219,207,219,'T','O','N','G','A',219,207,207,207,219,'S','Y','R','I','A',219,207,219,'A','R','U','B','A',219,207,219,'C','H','I','L','E',219},
+                          {223,223,'1','6',223,223,223,' ',223,223,'1','7',223,223,223,' ',223,223,'1','8',223,223,223,' ',' ',' ',223,223,'2','2',223,223,223,' ',223,223,'2','3',223,223,223,' ',223,223,'2','4',223,223,223},
                           {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
                           {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '},
                           {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '}};
 
-void coordenandas () {
 
-territorios[1].coord1 = matriz[1][2];	
-territorios[1].coord2 = matriz[1][3];
-territorios[1].coord3 = matriz[1][4];
 
-territorios[2].coord1 = matriz[1][10];
-territorios[2].coord2 = matriz[1][11];
-territorios[2].coord3 = matriz[1][12];
 
-territorios[3].coord1 = matriz[1][18];
-territorios[3].coord2 = matriz[1][19];
-territorios[3].coord3 = matriz[1][20];
+void coordenadas () {
 
-territorios[4].coord1 = matriz[7][2];
-territorios[4].coord2 = matriz[7][3];
-territorios[4].coord3 = matriz[7][4];
+territorios[1].coord1 = &matriz[1][2];	
+territorios[1].coord2 = &matriz[1][3];
+territorios[1].coord3 = &matriz[1][4];
+territorios[1].coord4 = &matriz[0][3];
 
-territorios[5].coord1 = matriz[7][14];
-territorios[5].coord2 = matriz[7][13];
-territorios[5].coord3 = matriz[7][12];
+territorios[2].coord1 = &matriz[1][10];
+territorios[2].coord2 = &matriz[1][11];
+territorios[2].coord3 = &matriz[1][12];
+territorios[2].coord4 = &matriz[0][11];
 
-territorios[6].coord1 = matriz[7][18];
-territorios[6].coord2 = matriz[7][19];
-territorios[6].coord3 = matriz[1][20];
+territorios[3].coord1 = &matriz[1][18];
+territorios[3].coord2 = &matriz[1][19];
+territorios[3].coord3 = &matriz[1][20];
+territorios[3].coord4 = &matriz[0][19];
 
-territorios[7].coord1 = matriz[1][28];
-territorios[7].coord2 = matriz[1][29];
-territorios[7].coord3 = matriz[1][30];
+territorios[4].coord1 = &matriz[7][2];
+territorios[4].coord2 = &matriz[7][3];
+territorios[4].coord3 = &matriz[7][4];
+territorios[4].coord4 = &matriz[6][3];
 
-territorios[8].coord1 = matriz[1][36];
-territorios[8].coord2 = matriz[1][37];
-territorios[8].coord3 = matriz[1][38];
+territorios[5].coord1 = &matriz[7][14];
+territorios[5].coord2 = &matriz[7][13];
+territorios[5].coord3 = &matriz[7][12];
+territorios[5].coord4 = &matriz[6][11];
 
-territorios[9].coord1 = matriz[1][42];
-territorios[9].coord2 = matriz[1][43];
-territorios[9].coord3 = matriz[1][44];
+territorios[6].coord1 = &matriz[7][18];
+territorios[6].coord2 = &matriz[7][19];
+territorios[6].coord3 = &matriz[1][20];
+territorios[6].coord4 = &matriz[6][19];
 
-territorios[10].coord1 = matriz[7][28];
-territorios[10].coord2 = matriz[7][29];
-territorios[10].coord3 = matriz[7][30];
+territorios[7].coord1 = &matriz[1][28];
+territorios[7].coord2 = &matriz[1][29];
+territorios[7].coord3 = &matriz[1][30];
+territorios[7].coord4 = &matriz[0][29];
 
-territorios[11].coord1 = matriz[7][36];
-territorios[11].coord2 = matriz[7][37];
-territorios[11].coord3 = matriz[7][38];
+territorios[8].coord1 = &matriz[1][36];
+territorios[8].coord2 = &matriz[1][37];
+territorios[8].coord3 = &matriz[1][38];
+territorios[8].coord4 = &matriz[0][37];
 
-territorios[12].coord1 = matriz[7][42];
-territorios[12].coord2 = matriz[7][43];
-territorios[12].coord3 = matriz[7][44];
+territorios[9].coord1 = &matriz[1][44];
+territorios[9].coord2 = &matriz[1][45];
+territorios[9].coord3 = &matriz[1][46];
+territorios[9].coord4 = &matriz[0][45];
 
-territorios[13].coord1 = matriz[17][2];
-territorios[13].coord2 = matriz[17][3];
-territorios[13].coord3 = matriz[17][4];
+territorios[10].coord1 = &matriz[7][28];
+territorios[10].coord2 = &matriz[7][29];
+territorios[10].coord3 = &matriz[7][30];
+territorios[10].coord4 = &matriz[6][29];
 
-territorios[14].coord1 = matriz[17][10];
-territorios[14].coord2 = matriz[17][11];
-territorios[14].coord3 = matriz[17][12];
+territorios[11].coord1 = &matriz[7][36];
+territorios[11].coord2 = &matriz[7][37];
+territorios[11].coord3 = &matriz[7][38];
+territorios[11].coord4 = &matriz[6][37];
 
-territorios[15].coord1 = matriz[17][18];
-territorios[15].coord2 = matriz[18][19];
-territorios[15].coord3 = matriz[19][20];
+territorios[12].coord1 = &matriz[7][44];
+territorios[12].coord2 = &matriz[7][45];
+territorios[12].coord3 = &matriz[7][46];
+territorios[12].coord4 = &matriz[6][45];
 
-territorios[16].coord1 = matriz[23][2];
-territorios[16].coord2 = matriz[23][3];
-territorios[16].coord3 = matriz[23][4];
+territorios[13].coord1 = &matriz[17][2];
+territorios[13].coord2 = &matriz[17][3];
+territorios[13].coord3 = &matriz[17][4];
+territorios[13].coord4 = &matriz[16][3];
 
-territorios[17].coord1 = matriz[23][10];
-territorios[17].coord2 = matriz[23][11];
-territorios[17].coord3 = matriz[23][12];
+territorios[14].coord1 = &matriz[17][10];
+territorios[14].coord2 = &matriz[17][11];
+territorios[14].coord3 = &matriz[17][12];
+territorios[14].coord4 = &matriz[16][11];
 
-territorios[18].coord1 = matriz[23][18];
-territorios[18].coord2 = matriz[23][19];
-territorios[18].coord3 = matriz[23][20];
+territorios[15].coord1 = &matriz[17][18];
+territorios[15].coord2 = &matriz[17][19];
+territorios[15].coord3 = &matriz[17][20];
+territorios[15].coord4 = &matriz[16][19];
 
-territorios[19].coord1 = matriz[17][28];
-territorios[19].coord1 = matriz[17][29];
-territorios[19].coord3 = matriz[17][30];
+territorios[16].coord1 = &matriz[23][2];
+territorios[16].coord2 = &matriz[23][3];
+territorios[16].coord3 = &matriz[23][4];
+territorios[16].coord4 = &matriz[22][3];
 
-territorios[20].coord1 = matriz[17][36];
-territorios[20].coord2 = matriz[17][37];
-territorios[20].coord3 = matriz[17][28];	
+territorios[17].coord1 = &matriz[23][10];
+territorios[17].coord2 = &matriz[23][11];
+territorios[17].coord3 = &matriz[23][12];
+territorios[17].coord4 = &matriz[22][11];
 
-territorios[21].coord1 = matriz[17][42];
-territorios[21].coord2 = matriz[17][43];
-territorios[21].coord3 = matriz[17][44];
+territorios[18].coord1 = &matriz[23][18];
+territorios[18].coord2 = &matriz[23][19];
+territorios[18].coord3 = &matriz[23][20];
+territorios[18].coord4 = &matriz[22][19];
 
-territorios[22].coord1 = matriz[23][28];
-territorios[22].coord2 = matriz[23][29];
-territorios[22].coord3 = matriz[23][30];
+territorios[19].coord1 = &matriz[17][28];
+territorios[19].coord1 = &matriz[17][29];
+territorios[19].coord3 = &matriz[17][30];
+territorios[19].coord4 = &matriz[16][29];
 
-territorios[23].coord1 = matriz[23][36];
-territorios[23].coord2 = matriz[23][37];
-territorios[23].coord3 = matriz[23][38];
+territorios[20].coord1 = &matriz[17][36];
+territorios[20].coord2 = &matriz[17][37];
+territorios[20].coord3 = &matriz[17][38];
+territorios[20].coord4 = &matriz[16][37];	
 
-territorios[24].coord1 = matriz[23][42];
-territorios[24].coord2 = matriz[23][43];
-territorios[24].coord3 = matriz[23][44];
+territorios[21].coord1 = &matriz[17][44];
+territorios[21].coord2 = &matriz[17][45];
+territorios[21].coord3 = &matriz[17][46];
+territorios[21].coord4 = &matriz[16][45];
 
+territorios[22].coord1 = &matriz[23][28];
+territorios[22].coord2 = &matriz[23][29];
+territorios[22].coord3 = &matriz[23][30];
+territorios[22].coord4 = &matriz[22][29];
+
+territorios[23].coord1 = &matriz[23][36];
+territorios[23].coord2 = &matriz[23][37];
+territorios[23].coord3 = &matriz[23][38];
+territorios[23].coord4 = &matriz[22][37];
+
+territorios[24].coord1 = &matriz[23][44];
+territorios[24].coord2 = &matriz[23][45];
+territorios[24].coord3 = &matriz[23][46];
+territorios[24].coord3 = &matriz[22][45];
 	
 }
 
+
+void DefinirFronteiras () {
+	
+	territorios[1].fronteiras[0] = 2;
+	territorios[1].fronteiras[1] = 4;
+	
+	territorios[2].fronteiras[0] = 1;
+	territorios[2].fronteiras[1] = 5;
+	territorios[2].fronteiras[2] = 3;
+	
+	territorios[3].fronteiras[0] = 2;
+	territorios[3].fronteiras[1] = 6;
+	territorios[3].fronteiras[2] = 7;
+	
+	territorios[4].fronteiras[0] = 1;
+	territorios[4].fronteiras[1] = 5;
+	
+	territorios[5].fronteiras[0] = 2;
+	territorios[5].fronteiras[1] = 4;
+	territorios[5].fronteiras[2] = 6;
+	territorios[5].fronteiras[3] = 14;
+
+	territorios[6].fronteiras[0] = 3;
+	territorios[6].fronteiras[1] = 5;
+	territorios[6].fronteiras[2] = 10;
+	
+	territorios[7].fronteiras[0] = 3;
+	territorios[7].fronteiras[1] = 8;
+	territorios[7].fronteiras[2] = 10;
+	
+	territorios[8].fronteiras[0] = 7;
+	territorios[8].fronteiras[1] = 9;
+	territorios[8].fronteiras[2] = 11;
+	
+	territorios[9].fronteiras[0] = 8;
+	territorios[9].fronteiras[1] = 12;	
+	
+	territorios[10].fronteiras[0] = 6;
+	territorios[10].fronteiras[1] = 7;
+	territorios[10].fronteiras[2] = 11;
+	
+	territorios[11].fronteiras[0] = 8;
+	territorios[11].fronteiras[1] = 10;
+	territorios[11].fronteiras[2] = 12;
+	territorios[11].fronteiras[3] = 20;
+	
+	territorios[12].fronteiras[0] = 9;
+	territorios[12].fronteiras[1] = 11;
+	
+	territorios[13].fronteiras[0] = 14;
+	territorios[13].fronteiras[1] = 16;
+	
+	territorios[14].fronteiras[0] = 5;
+	territorios[14].fronteiras[1] = 13;
+	territorios[14].fronteiras[2] = 15;
+	territorios[14].fronteiras[3] = 17;
+	
+	territorios[15].fronteiras[0] = 14;
+	territorios[15].fronteiras[1] = 18;
+	territorios[15].fronteiras[2] = 19;
+	
+	territorios[16].fronteiras[0] = 13;
+	territorios[16].fronteiras[1] = 17;
+	
+	territorios[17].fronteiras[0] = 14;
+	territorios[17].fronteiras[1] = 16;
+	territorios[17].fronteiras[2] = 18;
+	
+	territorios[18].fronteiras[0] = 15;
+	territorios[18].fronteiras[1] = 17;
+	territorios[18].fronteiras[2] = 22;
+	
+	territorios[19].fronteiras[0] = 15;
+	territorios[19].fronteiras[1] = 20;
+	territorios[19].fronteiras[2] = 22;
+	
+	territorios[20].fronteiras[0] = 11;
+	territorios[20].fronteiras[1] = 19;
+	territorios[20].fronteiras[2] = 21;
+	territorios[20].fronteiras[3] = 23;
+	
+	territorios[21].fronteiras[0] = 20;
+	territorios[21].fronteiras[1] = 24;
+	
+	territorios[22].fronteiras[0] = 18;
+	territorios[22].fronteiras[1] = 19;
+	territorios[22].fronteiras[2] = 23;
+	
+	territorios[23].fronteiras[0] = 20;
+	territorios[23].fronteiras[1] = 22;
+	territorios[23].fronteiras[2] = 24;
+	
+	territorios[24].fronteiras[0] = 23;
+	territorios[24].fronteiras[1] = 21;
+	
+	
+	
+}
 
 void lernome (void) {
 	
@@ -166,14 +294,15 @@ void lernome (void) {
 
 void printarmapa (void) {
 
-printf("JOGADOR A: %s                    JOGADOR B: %s\n\n\n", playera, playerb);
+printf("JOGADOR A: %s                    JOGADOR B: %s\n\n", playera, playerb);
 
-for (int i=0;i<35;++i){
+for (int i=0;i<27;++i){
 	for (int j=0;j<49;j++){
 	   printf("%c", matriz[i][j]);
 	} 
 	printf("\n");
 }
+
 }
 
 
@@ -218,16 +347,6 @@ int achou(int x){
 	
 }
 
-
-int dados(){
-
-	int result;
-
-	result=(rand()%6+1);
-	
-
-  return result;
-}
 
 
 
@@ -523,6 +642,325 @@ int dados(){
   	
   }
   
+  int dados(){
+    
+	int result;
+
+	result=(rand()%6)+1;
+
+  return result;
+}
+
+void jogo_de_dados(){
+
+	int MaX, MnX, MX, MaY, MnY, MY;
+	int a, b, c;
+
+	MaX=0;
+	MnX=0;
+	MX=0; 
+	MaY=0;
+	MnY=0;
+	MY=0; 
+
+	//PDX
+	if (PDX>SDX){
+		if(PDX>TDX){MaX=PDX;}
+		if (PDX<TDX){MX=PDX;}
+	}
+	if (PDX<SDX){
+		if (PDX>TDX){MX=PDX;}
+		if(PDX<TDX){MnX=PDX;}
+	}
+	
+	//SDX
+	if (SDX>PDX){
+		if(SDX>TDX){MaX=SDX;}
+		if(SDX<TDX){MX=SDX;}
+	}
+	if (SDX<PDX){
+		if(SDX>TDX){MX=SDX;}
+		if(SDX<TDX){MnX=SDX;}
+	}
+	
+	//TDX
+	if (TDX>PDX){
+		if(TDX>SDX){MaX=TDX;}
+		if(TDX<SDX){MX=TDX;}
+	}
+	if (TDX<PDX){
+		if(TDX>SDX){MX=TDX;}
+		if(TDX<SDX){MnX=TDX;}
+	}
+	
+	//Igualdades no Dado A
+	if(PDX==SDX){
+		if(PDX>TDX){
+			MaX=PDX;
+			MX=SDX;
+			MnX=TDX;
+		}
+		if(PDX<TDX){
+			MaX=TDX;
+			MX=SDX;
+			MnX=PDX;
+		}
+	}
+	if(SDX==TDX){
+		if(SDX>PDX){
+			MaX=TDX;
+			MX=SDX;
+			MnX=PDX;
+		}
+		if(SDX<PDX){
+			MaX=PDX;
+			MX=SDX;
+			MnX=TDX;
+		}
+	}
+	if(TDX==PDX){
+		if(TDX>SDX){
+			MaX=TDX;
+			MX=PDX;
+			MnX=SDX;
+		}
+		if(TDX<SDX){
+			MaX=SDX;
+			MX=PDX;
+			MnX=TDX;
+		}
+	}
+
+	//PDY
+	if (PDY>SDY){
+		if(PDY>TDY){MaY=PDY;}
+		if(PDY<TDY){MY=PDY;}
+	}
+	if (PDY<SDY){
+		if(PDY>TDY){MY=PDY;}
+		if(PDY<TDY){MnY=PDY;}
+	}
+
+	//SDY
+	if (SDY>PDY){
+		if(SDY>TDY){MaY=SDY;}
+		if(SDY<TDY){MY=SDY;}
+	}
+	if (SDY<PDY){
+		if(SDY>TDY){MY=SDY;}
+		if(SDY<TDY){MnY=SDY;}
+	}
+
+	//TDY
+	if (TDY>PDY){
+		if(TDY>SDY){MaY=TDY;}
+		if(TDY<SDY){MY=TDY;}
+	}
+	if (TDY<PDY){
+		if(TDY>SDY){MY=TDY;}
+		if(TDY<SDY){MnY=TDY;}
+	}
+	
+	//Igualdades no Dado B
+	if(PDY==SDY){
+		if(PDY>TDY){
+			MaY=PDY;
+			MY=SDY;
+			MnY=TDY;
+		}
+		if(PDY<TDY){
+			MaY=TDY;
+			MY=SDY;
+			MnY=PDY;
+		}
+	}
+	if(SDY==TDY){
+		if(SDY>PDY){
+			MaY=TDY;
+			MY=SDY;
+			MnY=PDY;
+		}
+		if(SDY<PDY){
+			MaY=PDY;
+			MY=SDY;
+			MnY=TDY;
+		}
+	}
+	if(TDY==PDY){
+		if(TDY>SDY){
+			MaY=TDY;
+			MY=PDY;
+			MnY=SDY;
+		}
+		if(TDY<SDY){
+			MaY=SDY;
+			MY=PDY;
+			MnY=TDY;
+		}
+	}
+	
+	//Ataque X Defesa
+
+	// MaX Vs MaY
+	if (MaX>MaY) { 
+	printf("Ataque vence o primeiro dado!\n");
+	
+	a = territorios[de].tropas[0] * 100;
+	b = territorios[de].tropas[1]  * 10;
+	c= territorios[de].tropas[2] + a +b  -1;
+	
+	territorios[de].tropas[0] = c/100;
+	territorios[de].tropas[1] = (c - territorios[de].tropas[0] * 100) / 10;
+	territorios[de].tropas[2] = (c - territorios[de].tropas[0] * 100 ) - territorios[de].tropas[1] * 10;
+  	
+  	*(territorios[de].coord1) = (territorios[de].tropas[0] + '0');
+  	*(territorios[de].coord2) = (territorios[de].tropas[1] + '0');
+  	*(territorios[de].coord3) = (territorios[de].tropas[2] + '0');
+  	
+	
+	}
+	
+	if ( (MaX<MaY) || (MaX==MaY) ) {
+	printf("Defesa vence o primeiro dado!\n");	
+	
+	a = territorios[at].tropas[0] * 100;
+	b = territorios[at].tropas[1]  * 10;
+	c = territorios[at].tropas[2] + a + b -1;
+	
+	territorios[at].tropas[0] = c/100;
+	territorios[at].tropas[1] = (c - territorios[at].tropas[0] * 100) / 10;
+	territorios[at].tropas[2] = (c - territorios[at].tropas[0] * 100 ) - territorios[at].tropas[1] * 10;
+  	
+  	*(territorios[at].coord1) = (territorios[at].tropas[0] + '0');
+  	*(territorios[at].coord2) = (territorios[at].tropas[1] + '0');
+  	*(territorios[at].coord3) = (territorios[at].tropas[2] + '0');
+  	
+	
+	 }
+	
+	// MX Vs MY
+	if(MX != 0 && MY != 0){
+	if (MX>MY) {
+	printf("Ataque vence o segundo dado!\n");
+	
+	a = territorios[de].tropas[0] * 100;
+	b = territorios[de].tropas[1]  * 10;
+	c = territorios[de].tropas[2] + a + b -1;
+	
+	territorios[de].tropas[0] = c/100;
+	territorios[de].tropas[1] = (c - territorios[de].tropas[0] * 100) / 10;
+	territorios[de].tropas[2] = (c - territorios[de].tropas[0] * 100 ) - territorios[de].tropas[1] * 10;
+  	
+  	*(territorios[de].coord1) = (territorios[de].tropas[0] + '0');
+  	*(territorios[de].coord2) = (territorios[de].tropas[1] + '0');
+  	*(territorios[de].coord3) = (territorios[de].tropas[2] + '0');
+
+	}
+	if ((MX<MY) || (MX==MY) ){
+	printf("Defesa vence o segundo dado!\n");	
+	
+	a = territorios[at].tropas[0] * 100;
+	b = territorios[at].tropas[1]  * 10;
+	c = territorios[at].tropas[2] + a + b -1;
+	
+	territorios[at].tropas[0] = c/100;
+	territorios[at].tropas[1] = (c - territorios[at].tropas[0] * 100) / 10;
+	territorios[at].tropas[2] = (c - territorios[at].tropas[0] * 100 ) - territorios[at].tropas[1] * 10;
+  	
+  	*(territorios[at].coord1) = (territorios[at].tropas[0] + '0');
+  	*(territorios[at].coord2) = (territorios[at].tropas[1] + '0');
+  	*(territorios[at].coord3) = (territorios[at].tropas[2] + '0');
+  	
+	}
+	}
+	
+	// MnX Vs MnY
+	if(MnX != 0 && MnY != 0){
+	if (MnX>MnY) {
+	printf("Ataque vence o terceiro dado!\n");
+	
+	a = territorios[de].tropas[0] * 100;
+	b = territorios[de].tropas[1]  * 10;
+	c = territorios[de].tropas[2] + a + b -1;
+	
+	territorios[de].tropas[0] = c/100;
+	territorios[de].tropas[1] = (c - territorios[de].tropas[0] * 100) / 10;
+	territorios[de].tropas[2] = (c - territorios[de].tropas[0] * 100 ) - territorios[de].tropas[1] * 10;
+  	
+  	*(territorios[de].coord1) = (territorios[de].tropas[0] + '0');
+  	*(territorios[de].coord2) = (territorios[de].tropas[1] + '0');
+  	*(territorios[de].coord3) = (territorios[de].tropas[2] + '0');
+
+	
+	}
+	if ((MnX<MnY) || (MnX==MnY)) {
+	printf("Defesa vence o terceiro dado!\n");	
+	
+	a = territorios[at].tropas[0] * 100;
+	b = territorios[at].tropas[1]  * 10;
+	c = territorios[at].tropas[2] + a + b -1;
+	
+	territorios[at].tropas[0] = c/100;
+	territorios[at].tropas[1] = (c - territorios[at].tropas[0] * 100) / 10;
+	territorios[at].tropas[2] = (c - territorios[at].tropas[0] * 100 ) - territorios[at].tropas[1] * 10;
+  	
+  	*(territorios[at].coord1) = (territorios[at].tropas[0] + '0');
+  	*(territorios[at].coord2) = (territorios[at].tropas[1] + '0');
+  	*(territorios[at].coord3) = (territorios[at].tropas[2] + '0');
+  	
+	} 
+	}
+	
+	return;
+} 
+  
+
+void DADOS(){
+
+int resultado, i = 0;
+dados();
+srand(time(NULL));
+
+if ((territorios[at].tropas[2] == 1) && (territorios[at].tropas[1] != 0) && (territorios[at].tropas[0] != 0 )){
+	printf("Voce so pode atacar com mais de uma tropa no pais!");
+}else
+
+if((territorios[at].tropas[2] == 2) && (territorios[at].tropas[1] != 0) && (territorios[at].tropas[0] != 0 )){
+	PDX = dados();
+} else
+
+if ((territorios[at].tropas[2] == 3) && (territorios[at].tropas[1] != 0) && (territorios[at].tropas[0] != 0 )) {
+	PDX = dados();
+	SDX = dados();
+	
+ } else {
+ 	PDX = dados ();
+	SDX = dados ();
+	TDX = dados ();
+}
+
+if ((territorios[de].tropas[2] == 1) && (territorios[de].tropas[1] != 0) && (territorios[de].tropas[0] != 0 )){
+	PDY= dados(); 
+} else
+
+if((territorios[de].tropas[2] == 2) && (territorios[de].tropas[1] != 0) && (territorios[de].tropas[0] != 0 )){
+	PDY = dados();
+	SDY = dados();
+}
+
+else {
+	PDY = dados();
+	SDY = dados();
+	TDY = dados();
+	
+ } 
+
+}
+
+  
+
+
+
   
   void TotalPaises(void){
   	
@@ -542,70 +980,243 @@ int dados(){
   }
   
   
-  void DistribuirTropas(){
+  void DistribuirTropasA(){
   	
+  	coordenadas();
   	
-  	
-	int TdispA, TdispB,  y, z, w, x, t; //TdispA = tropas disponiveis para o jogador a //TdispB  = tropas disponiveis para o jogador b
-  	
+	int TdispA,y,w,z, x, t,n; //TdispA = tropas disponiveis para o jogador a //TdispB  = tropas disponiveis para o jogador b
   	
   	TdispA = totalA/2;
-  	TdispB = totalB/2;
   	
   	
-  	
-  	for (int s = 0; s < (totalA/2); ++s){  
-  	printarmapa();
+  	if(totalA < 6){
+  		TdispA = 3;
+	  }
+  		
+
+   while(TdispA>0){
+
+    printarmapa();
   
-  	printf("Jogador A tem %i tropas disponiveis\nDigite o numero do pais onde deseja colocar uma tropa:\n", TdispA);
+  	printf("Jogador A tem %i tropas disponiveis\nDigite o numero do pais onde deseja colocar tropas:\n", TdispA);
   	scanf("%i", &x);
   	
+  	printf("Digite o numero de tropas que deseja colocar no pais %i\n",x);
+  	scanf("%i", &n);
+  	
+  	//condiciona a existencia do pais
+  	if(x>24 || x<1) { printf("Esse pais nao existe\nDigite qualquer tecla para continuar...\n");
+	  getch();
+	  system("cls");
+	  //condiciona se o pais pertence ao jogadpr A
+	  } else if (territorios[x].jogador == 'B'){
+	  
+	  printf ("Esse pais nao te pertence, digite um pais que esteja identificado com a letra A\nDigite qualquer tecla para continuar...\n");
+	  getch();
+	  system("cls");
+	
+} else if (n>TdispA){ //condiciona o numero de tropas
+	printf("Numero de tropas maior que o disponivel\nDigite qualque tecla para continuar...\n");
+	getch();
+	system("cls");
+}
+    else { //calculo do aumento de tropas
   	y = territorios[x].tropas[0] * 100;
 	z = territorios[x].tropas[1]  * 10;
-	w = territorios[x].tropas[2] + y + z +1;
+	w = territorios[x].tropas[2] + y + z +n;
 	
 	territorios[x].tropas[0] = w/100;
 	territorios[x].tropas[1] = (w - territorios[x].tropas[0] * 100) / 10;
 	territorios[x].tropas[2] = (w - territorios[x].tropas[0] * 100 ) - territorios[x].tropas[1] * 10;
   	
-  	territorios[x].coord1 =	territorios[x].tropas[0] + '0';
-  	territorios[x].coord2 = territorios[x].tropas[1] + '0';
-  	territorios[x].coord3 =	territorios[x].tropas[2] + '0';
-	
-	
-	      	
-	  --TdispA;
-	  system("cls");	
-    
-  }
-  	for (int s = 0; s < (totalB/2); ++s){  
+  	//printar o numero atual de tropas no mapa
+  	*(territorios[x].coord1) = (territorios[x].tropas[0] + '0');
+  	*(territorios[x].coord2) = (territorios[x].tropas[1] + '0');
+  	*(territorios[x].coord3) = (territorios[x].tropas[2] + '0');
+  	 
+  	     	
+	  TdispA = TdispA - n;
+	  system("cls");
+	  
+}
+}
+}
+ 
+  void DistribuirTropasB (){
+  	
+  	coordenadas();
+  	
+  	int TdispB, e,f,g,x,n, t; 
+  	
+  //calcula o n de tropas disponiveis
+	TdispB = totalB/2;
+
+	if(totalB < 6){
+  		TdispB = 3;
+	  }
+  
+ 
+  	while(TdispB>0){  
   	
   	printarmapa (); 
   
   	printf("Jogador B tem %i tropas disponiveis\nDigite o numero do pais onde deseja colocar uma tropa:\n", TdispB);
   	scanf("%i", &x);
   	
-  	y = territorios[x].tropas[0] * 100;
-	z = territorios[x].tropas[1]  * 10;
-	w = territorios[x].tropas[2] + y + z +1;
+  	printf("Digite o numero de tropas que deseja colocar no pais %i\n",x);
+  	scanf("%i", &n);
+  	
+  	
+  	if(x>24 || x<1) { printf("Esse pais nao existe\nDigite qualquer tecla para continuar...\n");
+	  getch();
+      system("cls");
+	  
+	  } else if (territorios[x].jogador == 'A'){
+	  
+	  printf ("Esse pais nao te pertence, digite um pais que esteja identificado com a letra B\nDigite qualquer tecla para continuar...\n");
+	  getch();
+  	  system("cls");
+  	  
+  } else if (n>TdispB){ //condiciona o numero de tropas
+	printf("Numero de tropas maior que o disponivel\nDigite qualque tecla para continuar...\n");
+	getch();
+    system("cls");
+  
+  }else {
+  	e = territorios[x].tropas[0] * 100;
+	f = territorios[x].tropas[1]  * 10;
+	g = territorios[x].tropas[2] + e + f +n;
 	
-	territorios[x].tropas[0] = w/100;
-	territorios[x].tropas[1] = (w - territorios[x].tropas[0] * 100) / 10;
-	territorios[x].tropas[2] = (w - territorios[x].tropas[0] * 100 ) - territorios[x].tropas[1] * 10;
+	territorios[x].tropas[0] = g/100;
+	territorios[x].tropas[1] = (g - territorios[x].tropas[0] * 100) / 10;
+	territorios[x].tropas[2] = (g - territorios[x].tropas[0] * 100 ) - territorios[x].tropas[1] * 10;
   	
-  	territorios[x].coord1 =	territorios[x].tropas[0] + '0';
-  	territorios[x].coord2 =  territorios[x].tropas[1] + '0';
-  	territorios[x].coord3 =	territorios[x].tropas[2] + '0'; 
+    *(territorios[x].coord1) = (territorios[x].tropas[0] + '0');
+  	*(territorios[x].coord2) = (territorios[x].tropas[1] + '0');
+  	*(territorios[x].coord3) = (territorios[x].tropas[2] + '0');
   	
-	  --TdispB;
+	  TdispB = TdispB - n;
 	  system("cls");
+	  
+}	
+  } 
   	
-  }
-  
-  
-  
+
 }
-  
-  
 
 
+void Ojogador () {
+
+int result;
+
+
+srand(time(NULL));
+result=(rand()%2+1);	
+	
+if (result == 1){
+	jogadorDaVez = 'A';
+	segundoJogador = 'B';
+}	
+	
+if (result == 2){
+	jogadorDaVez = 'B';
+	segundoJogador = 'A';
+}	
+		
+	
+}
+
+void ataque (){
+
+DefinirFronteiras ();
+
+int p;
+int b = 1;
+while (b=1){
+
+printarmapa();
+
+printf("Jogador %c, digite o numero do pais origem do ataque:\n", jogadorDaVez);
+scanf("%i", &at);
+
+printf("Digite o pais que deseja atacar (lembre-se que so se pode atacar paises que facam fronteira com o de origem)\n");
+scanf("%i", &de);
+
+
+	if((territorios[at].fronteiras[0] == de) || (territorios[at].fronteiras[1] == de) || (territorios[at].fronteiras[2] == de)|| (territorios[at].fronteiras[3] == de) 
+	&& (territorios[at].jogador != jogadorDaVez))
+	{
+	   DADOS();
+	   jogo_de_dados ();
+	   
+	   if ((territorios[de].tropas[0] == 0) && (territorios[de].tropas[1] == 0) && (territorios[de].tropas[2] == 0)) {
+	   	       territorios[de].jogador = jogadorDaVez;
+			 *(territorios[de].coord4) = jogadorDaVez;
+	   	}	  
+	   	
+	   	printf("Se dejesejar parar o ataque, digite 1, para continuar digite 2...\n");
+		scanf("%d", &p);
+		if (p == 1) {
+		break;
+			  
+	  system("cls"); 
+	   
+	} 
+	
+	if(p==2)system("cls");
+	
+	}else {
+		printf("Nao eh possivel realizar esse ataque!\nDigite qualquer tecla para continuar\n");
+		getch();
+		system("cls");
+	}
+}
+}
+
+void ataque2 () {
+
+DefinirFronteiras ();
+
+int p;
+int b = 1;
+while (b=1){
+
+printarmapa();
+
+printf("Jogador %c, digite o numero do pais origem do ataque:\n", segundoJogador);
+scanf("%i", &at);
+
+printf("Digite o país que deseja atacar (lembre-se que so se pode atacar paises que façam fronteira com o de origem)\n");
+scanf("%i", &de);
+
+
+	if((territorios[at].fronteiras[0] == de) || (territorios[at].fronteiras[1] == de) || (territorios[at].fronteiras[2] == de)|| (territorios[at].fronteiras[3] == de) && (territorios[at].jogador != jogadorDaVez))
+	{
+	   DADOS();
+	   jogo_de_dados ();
+	   
+	   if ((territorios[de].tropas[0] == 0) && (territorios[de].tropas[1] == 0) && (territorios[de].tropas[2] == 0)){
+	   	       territorios[de].jogador = segundoJogador;
+			 *(territorios[de].coord4) = segundoJogador;
+	   	
+			 }	   
+	   
+	    printf("Se dejesejar parar o ataque, digite 1, para continuar digite 2...\n");
+		scanf("%d", &p);
+		if (p == 1) {
+		break;
+		system("cls");
+	   
+	} 
+	
+	if(p==2) system("cls");
+	else {
+		printf("Nao eh possivel atacar esse pais!\nDigite qualquer tecla para continuar\n");
+		getch();
+		system("cls");
+	}
+
+}
+}
+
+  
