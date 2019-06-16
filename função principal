@@ -1,0 +1,82 @@
+#include <stdio.h>
+#include "bibliotecawar.h"
+#include <conio.h>
+
+
+
+int main (){
+	
+	int p;
+	
+	system ("color 04");
+	printf ("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tWAR\n");
+	printf("Objetivo: Conquistar todos os paises.\n");
+	printf("Regras:\n");
+	printf("1-Em cada rodada o jogador recebera mais exercitos, que devem ser distribuidos em seus paises.\n");
+	printf("2-O jogador pode atacar quantas vezes ele quiser ate ele desistir ou ficar sem exercitos para atacar.\n");
+	printf("3-O jogador pode atacar os paises vizinhos ao de origem do ataque.\n");
+	printf("4-Quando o exercito de uma regiao chegar a zero o atacante pode alocar suas unidades para la.\n");
+
+	
+	printf("Digite qualquer tecla para continuar...\n");
+	getch();
+	
+
+	system ("cls");
+	
+	lernome();
+	system ("cls");
+     
+    sorteio();
+	DistribuirPaises();
+	TotalPaises();
+	IniciarTropas();
+	DistribuirTropasA();
+	DistribuirTropasB ();
+	Ojogador ();
+	
+	for ( ; ; ){
+	 
+	    if (jogadorDaVez == 'A'){
+     	DistribuirTropasA();
+       } else{
+    	DistribuirTropasB();
+       }
+        ataque();
+        if ((territorios[1].jogador == territorios[2].jogador ) && (territorios[2].jogador == territorios[3].jogador ) && (territorios[3].jogador == territorios[4].jogador ) &&
+	(territorios[4].jogador == territorios[5].jogador ) && (territorios[5].jogador == territorios[6].jogador ) && (territorios[6].jogador == territorios[7].jogador ) && 
+	(territorios[7].jogador == territorios[8].jogador ) && (territorios[8].jogador == territorios[9].jogador ) && (territorios[9].jogador == territorios[10].jogador ) &&
+	(territorios[10].jogador == territorios[11].jogador ) && (territorios[11].jogador == territorios[12].jogador ) && (territorios[12].jogador == territorios[13].jogador ) &&
+	(territorios[13].jogador == territorios[14].jogador ) && (territorios[14].jogador == territorios[15].jogador ) && (territorios[15].jogador == territorios[16].jogador ) &&
+	(territorios[16].jogador == territorios[17].jogador ) && (territorios[17].jogador == territorios[18].jogador ) && (territorios[18].jogador == territorios[19].jogador ) &&
+	(territorios[19].jogador == territorios[20].jogador ) && (territorios[20].jogador == territorios[21].jogador ) && (territorios[21].jogador == territorios[22].jogador ) &&
+	(territorios[22].jogador == territorios[23].jogador ) && (territorios[23].jogador == territorios[24].jogador )) {
+		printf("Fim de jogo\nVitoria do jogador %c!",territorio[24].jogador);
+		break;
+	}
+	   
+	 	if (segundoJogador == 'A'){
+     	DistribuirTropasA();
+       } else{
+    	DistribuirTropasB();
+       }
+		 ataque2();
+	if ((territorios[1].jogador == territorios[2].jogador ) && (territorios[2].jogador == territorios[3].jogador ) && (territorios[3].jogador == territorios[4].jogador ) &&
+	(territorios[4].jogador == territorios[5].jogador ) && (territorios[5].jogador == territorios[6].jogador ) && (territorios[6].jogador == territorios[7].jogador ) && 
+	(territorios[7].jogador == territorios[8].jogador ) && (territorios[8].jogador == territorios[9].jogador ) && (territorios[9].jogador == territorios[10].jogador ) &&
+	(territorios[10].jogador == territorios[11].jogador ) && (territorios[11].jogador == territorios[12].jogador ) && (territorios[12].jogador == territorios[13].jogador ) &&
+	(territorios[13].jogador == territorios[14].jogador ) && (territorios[14].jogador == territorios[15].jogador ) && (territorios[15].jogador == territorios[16].jogador ) &&
+	(territorios[16].jogador == territorios[17].jogador ) && (territorios[17].jogador == territorios[18].jogador ) && (territorios[18].jogador == territorios[19].jogador ) &&
+	(territorios[19].jogador == territorios[20].jogador ) && (territorios[20].jogador == territorios[21].jogador ) && (territorios[21].jogador == territorios[22].jogador ) &&
+	(territorios[22].jogador == territorios[23].jogador ) && (territorios[23].jogador == territorios[24].jogador )) {
+		printf("Fim de jogo\nVitoria do jogador %c!",territorio[24].jogador);
+		break;
+	}
+	
+	
+}
+	
+	return 0;
+}
+
+
