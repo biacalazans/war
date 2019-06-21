@@ -803,7 +803,7 @@ void jogo_de_dados(){
 
 	// MaX Vs MaY
 	if (MaX>MaY) { 
-	printf("Ataque vence o primeiro dado!\n");
+	printf("%i VS %i: Ataque vence o primeiro dado!\n", MaX, MaY);
 	
 	a = territorios[de].tropas[0] * 100;
 	b = territorios[de].tropas[1]  * 10;
@@ -821,7 +821,7 @@ void jogo_de_dados(){
 	}
 	
 	if ( (MaX<MaY) || (MaX==MaY) ) {
-	printf("Defesa vence o primeiro dado!\n");	
+	printf("%i VS %i: Defesa vence o primeiro dado!\n", MaX, MaY);	
 	
 	a = territorios[at].tropas[0] * 100;
 	b = territorios[at].tropas[1]  * 10;
@@ -841,7 +841,7 @@ void jogo_de_dados(){
 	// MX Vs MY
 	if(MX != 0 && MY != 0){
 	if (MX>MY) {
-	printf("Ataque vence o segundo dado!\n");
+	printf("%i VS %i: taque vence o segundo dado!\n", MX, MY);
 	
 	a = territorios[de].tropas[0] * 100;
 	b = territorios[de].tropas[1]  * 10;
@@ -857,7 +857,7 @@ void jogo_de_dados(){
 
 	}
 	if ((MX<MY) || (MX==MY) ){
-	printf("Defesa vence o segundo dado!\n");	
+	printf("%i VS %i: Defesa vence o segundo dado!\n", MX, MY);	
 	
 	a = territorios[at].tropas[0] * 100;
 	b = territorios[at].tropas[1]  * 10;
@@ -877,7 +877,7 @@ void jogo_de_dados(){
 	// MnX Vs MnY
 	if(MnX != 0 && MnY != 0){
 	if (MnX>MnY) {
-	printf("Ataque vence o terceiro dado!\n");
+	printf("%i VS %i: Ataque vence o terceiro dado!\n", MnX, MnY);
 	
 	a = territorios[de].tropas[0] * 100;
 	b = territorios[de].tropas[1]  * 10;
@@ -894,7 +894,7 @@ void jogo_de_dados(){
 	
 	}
 	if ((MnX<MnY) || (MnX==MnY)) {
-	printf("Defesa vence o terceiro dado!\n");	
+	printf("%i VS %i: Defesa vence o terceiro dado!\n", MnX, MnY);	
 	
 	a = territorios[at].tropas[0] * 100;
 	b = territorios[at].tropas[1]  * 10;
@@ -912,7 +912,7 @@ void jogo_de_dados(){
 	}
 	
 	return;
-} 
+}  
   
 
 void DADOS(){
