@@ -1,0 +1,99 @@
+void jogador_A_vence(){
+ 	
+		paisesA[0] = 1;
+    		territorios[1].jogador = 'A';
+    		matriz [0][3] = 'A' ;
+         
+        paisesA[1] = 2;
+    		territorios[2].jogador = 'A';
+    		matriz [0][11] = 'A';
+	
+        paisesA[2] = 3;
+        territorios[3].jogador = 'A';
+    		matriz [0][19] = 'A';	
+	    
+       paisesA[3] = 4;
+    		territorios[4].jogador = 'A';
+    		matriz [6][3] = 'A';  
+		0
+        paisesA[4] = 5;
+    		territorios[5].jogador = 'A';
+    		matriz [6][11] = 'A';
+        
+        paisesA[5] = 6;
+    		territorios[6].jogador = 'A';
+    		matriz [6][19] = 'A';
+
+        paisesA[6] = 7;
+    		territorios[7].jogador = 'A';
+    		matriz [0][29] = 'A';
+        
+        paisesA[7] = 8;
+    		territorios[8].jogador = 'A';
+    		matriz [0][37] = 'A';
+         
+        paisesA[8] = 9;
+    		territorios[9].jogador = 'A';
+    		matriz [0][45] = 'A';
+        
+        paisesA[9] = 10;
+    		territorios[10].jogador = 'A';
+    		matriz [6][29] = 'A';
+		
+        paisesA[10] = 11;
+    		territorios[11].jogador = 'A';
+    		matriz [6][37] = 'A';
+		
+        paisesA[11] = 12;
+    		territorios[12].jogador = 'A';
+    		matriz [6][45] = 'A';
+		
+        paisesA[13] = 24;
+    		territorios[24].jogador = 'A';
+    		matriz [22][45] = 'A';
+		
+        paisesA[14] = 14;
+    		territorios[14].jogador = 'A';
+    		matriz [16][11] = 'A';
+		
+       paisesA[15] = 15;
+    		territorios[15].jogador = 'A';
+    		matriz [16][19] = 'A';
+		
+        paisesA[16] = 16;
+    		territorios[16].jogador = 'A';
+    		matriz [22][3] = 'A';
+		
+        paisesA[17] = 17;
+    		territorios[17].jogador = 'A';
+    		matriz [22][11] = 'A';
+		
+        paisesA[18] = 18;
+    		territorios[18].jogador = 'A';
+    		matriz [22][19] = 'A'; 
+		
+        paisesA[19] = 19;
+    		territorios[19].jogador = 'A';
+    		matriz [16][29] = 'A'; 
+		
+        paisesA[20] = 20;
+    		territorios[20].jogador = 'A';
+    		matriz [16][37] = 'A'; 
+		
+        paisesA[21] = 21;
+    		territorios[21].jogador = 'A';
+    		matriz [16][45] = 'A'; 
+		
+        paisesA[22] = 22;
+    		territorios[22].jogador = 'A';
+    		matriz [22][29] = 'A';
+		
+        paisesA[23] = 23;
+    		territorios[23].jogador = 'A';
+    		matriz [22][37] = 'A';
+ 	
+		paisesB[1] = 13;
+    		territorios[13].jogador = 'A';
+    		matriz [16][3] = 'A';
+ 	return ;
+ }
