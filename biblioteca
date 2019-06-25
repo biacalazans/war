@@ -17,8 +17,8 @@
 	
    territorio territorios[25];
    
-int MaxX, MnX, MX, MaxY, MnY, MY,at,de;
-int PDX,  SDX,  TDX,  PDY, SDY, TDY ;   
+int MaxX = 0, MnX = 0, MX = 0, MaxY=0, MnY=0, MY=0, at, de, p, nt;
+int PDX = 0,  SDX = 0,  TDX = 0,  PDY = 0, SDY = 0, TDY = 0;   
 char jogadorDaVez, segundoJogador;    
 int totalA, totalB;
 char playera [51], playerb [51];
@@ -79,14 +79,14 @@ territorios[4].coord2 = &matriz[7][3];
 territorios[4].coord3 = &matriz[7][4];
 territorios[4].coord4 = &matriz[6][3];
 
-territorios[5].coord1 = &matriz[7][14];
-territorios[5].coord2 = &matriz[7][13];
+territorios[5].coord1 = &matriz[7][10];
+territorios[5].coord2 = &matriz[7][11];
 territorios[5].coord3 = &matriz[7][12];
 territorios[5].coord4 = &matriz[6][11];
 
 territorios[6].coord1 = &matriz[7][18];
 territorios[6].coord2 = &matriz[7][19];
-territorios[6].coord3 = &matriz[1][20];
+territorios[6].coord3 = &matriz[7][20];
 territorios[6].coord4 = &matriz[6][19];
 
 territorios[7].coord1 = &matriz[1][28];
@@ -177,7 +177,7 @@ territorios[23].coord4 = &matriz[22][37];
 territorios[24].coord1 = &matriz[23][44];
 territorios[24].coord2 = &matriz[23][45];
 territorios[24].coord3 = &matriz[23][46];
-territorios[24].coord3 = &matriz[22][45];
+territorios[24].coord4 = &matriz[22][45];
 	
 }
 
@@ -304,6 +304,7 @@ for (int i=0;i<27;++i){
 }
 
 }
+
 
 
 int sorteio (void){
@@ -651,7 +652,7 @@ int achou(int x){
   return result;
 }
 
-void jogo_de_dados(){
+ void jogo_de_dados(){
 
 	int MaX, MnX, MX, MaY, MnY, MY;
 	int a, b, c;
@@ -800,14 +801,25 @@ void jogo_de_dados(){
 	}
 	
 	//Ataque X Defesa
+	if (MaX == 10 && MaY ==10){
+	printf("Voce so pode atacar com mais de uma tropa no pais!\nDigite qualquer tecla para continuar...\n");
+	getch();
+	system("cls");
+		
+	} else{
+	
 
 	// MaX Vs MaY
 	if (MaX>MaY) { 
-	printf("%i VS %i: Ataque vence o primeiro dado!\n", MaX, MaY);
+	printf("Ataque vence o primeiro dado!\n");
 	
 	a = territorios[de].tropas[0] * 100;
 	b = territorios[de].tropas[1]  * 10;
 	c= territorios[de].tropas[2] + a +b  -1;
+	
+	if (c<0){
+		c = 0;
+	}
 	
 	territorios[de].tropas[0] = c/100;
 	territorios[de].tropas[1] = (c - territorios[de].tropas[0] * 100) / 10;
@@ -821,11 +833,15 @@ void jogo_de_dados(){
 	}
 	
 	if ( (MaX<MaY) || (MaX==MaY) ) {
-	printf("%i VS %i: Defesa vence o primeiro dado!\n", MaX, MaY);	
+	printf("Defesa vence o primeiro dado!\n");	
 	
 	a = territorios[at].tropas[0] * 100;
 	b = territorios[at].tropas[1]  * 10;
 	c = territorios[at].tropas[2] + a + b -1;
+	
+		if (c<0){
+		c = 0;
+	}
 	
 	territorios[at].tropas[0] = c/100;
 	territorios[at].tropas[1] = (c - territorios[at].tropas[0] * 100) / 10;
@@ -841,11 +857,15 @@ void jogo_de_dados(){
 	// MX Vs MY
 	if(MX != 0 && MY != 0){
 	if (MX>MY) {
-	printf("%i VS %i: taque vence o segundo dado!\n", MX, MY);
+	printf("Ataque vence o segundo dado!\n");
 	
 	a = territorios[de].tropas[0] * 100;
 	b = territorios[de].tropas[1]  * 10;
 	c = territorios[de].tropas[2] + a + b -1;
+	
+	if (c<0){
+		c = 0;
+	}
 	
 	territorios[de].tropas[0] = c/100;
 	territorios[de].tropas[1] = (c - territorios[de].tropas[0] * 100) / 10;
@@ -857,11 +877,15 @@ void jogo_de_dados(){
 
 	}
 	if ((MX<MY) || (MX==MY) ){
-	printf("%i VS %i: Defesa vence o segundo dado!\n", MX, MY);	
+	printf("Defesa vence o segundo dado!\n");	
 	
 	a = territorios[at].tropas[0] * 100;
 	b = territorios[at].tropas[1]  * 10;
 	c = territorios[at].tropas[2] + a + b -1;
+	
+	if (c<0){
+		c = 0;
+	}
 	
 	territorios[at].tropas[0] = c/100;
 	territorios[at].tropas[1] = (c - territorios[at].tropas[0] * 100) / 10;
@@ -877,11 +901,15 @@ void jogo_de_dados(){
 	// MnX Vs MnY
 	if(MnX != 0 && MnY != 0){
 	if (MnX>MnY) {
-	printf("%i VS %i: Ataque vence o terceiro dado!\n", MnX, MnY);
+	printf("Ataque vence o terceiro dado!\n");
 	
 	a = territorios[de].tropas[0] * 100;
 	b = territorios[de].tropas[1]  * 10;
 	c = territorios[de].tropas[2] + a + b -1;
+	
+		if (c<0){
+		c = 0;
+	}
 	
 	territorios[de].tropas[0] = c/100;
 	territorios[de].tropas[1] = (c - territorios[de].tropas[0] * 100) / 10;
@@ -894,11 +922,15 @@ void jogo_de_dados(){
 	
 	}
 	if ((MnX<MnY) || (MnX==MnY)) {
-	printf("%i VS %i: Defesa vence o terceiro dado!\n", MnX, MnY);	
+	printf("Defesa vence o terceiro dado!\n");	
 	
 	a = territorios[at].tropas[0] * 100;
 	b = territorios[at].tropas[1]  * 10;
 	c = territorios[at].tropas[2] + a + b -1;
+	
+		if (c<0){
+		c = 0;
+	}
 	
 	territorios[at].tropas[0] = c/100;
 	territorios[at].tropas[1] = (c - territorios[at].tropas[0] * 100) / 10;
@@ -910,9 +942,9 @@ void jogo_de_dados(){
   	
 	} 
 	}
-	
+}
 	return;
-}  
+} 
   
 
 void DADOS(){
@@ -921,15 +953,16 @@ int resultado, i = 0;
 dados();
 srand(time(NULL));
 
-if ((territorios[at].tropas[2] == 1) && (territorios[at].tropas[1] != 0) && (territorios[at].tropas[0] != 0 )){
-	printf("Voce so pode atacar com mais de uma tropa no pais!");
-}else
+if ((territorios[at].tropas[2] == 1) && (territorios[at].tropas[1] == 0) && (territorios[at].tropas[0] == 0 )){
+	PDX = 10;
+	PDY = 10;
+}else{
 
-if((territorios[at].tropas[2] == 2) && (territorios[at].tropas[1] != 0) && (territorios[at].tropas[0] != 0 )){
+if((territorios[at].tropas[2] == 2) && (territorios[at].tropas[1] == 0) && (territorios[at].tropas[0] == 0 )){
 	PDX = dados();
-} else
+} 
 
-if ((territorios[at].tropas[2] == 3) && (territorios[at].tropas[1] != 0) && (territorios[at].tropas[0] != 0 )) {
+if ((territorios[at].tropas[2] == 3) && (territorios[at].tropas[1] == 0) && (territorios[at].tropas[0] == 0 )) {
 	PDX = dados();
 	SDX = dados();
 	
@@ -939,11 +972,11 @@ if ((territorios[at].tropas[2] == 3) && (territorios[at].tropas[1] != 0) && (ter
 	TDX = dados ();
 }
 
-if ((territorios[de].tropas[2] == 1) && (territorios[de].tropas[1] != 0) && (territorios[de].tropas[0] != 0 )){
+if ((territorios[de].tropas[2] == 1) && (territorios[de].tropas[1] == 0) && (territorios[de].tropas[0] == 0 )){
 	PDY= dados(); 
-} else
+} 
 
-if((territorios[de].tropas[2] == 2) && (territorios[de].tropas[1] != 0) && (territorios[de].tropas[0] != 0 )){
+if((territorios[de].tropas[2] == 2) && (territorios[de].tropas[1] == 0) && (territorios[de].tropas[0] == 0 )){
 	PDY = dados();
 	SDY = dados();
 }
@@ -957,7 +990,7 @@ else {
 
 }
 
-  
+}
 
 
 
@@ -1015,8 +1048,8 @@ else {
 	  getch();
 	  system("cls");
 	
-} else if (n>TdispA){ //condiciona o numero de tropas
-	printf("Numero de tropas maior que o disponivel\nDigite qualque tecla para continuar...\n");
+} else if (n>TdispA || n<0){ //condiciona o numero de tropas
+	printf("Numero de tropas indisponivel!\nDigite qualque tecla para continuar...\n");
 	getch();
 	system("cls");
 }
@@ -1077,8 +1110,8 @@ else {
 	  getch();
   	  system("cls");
   	  
-  } else if (n>TdispB){ //condiciona o numero de tropas
-	printf("Numero de tropas maior que o disponivel\nDigite qualque tecla para continuar...\n");
+  } else if (n>TdispB || n<0){ //condiciona o numero de tropas
+	printf("Numero de tropas indisponivel!\nDigite qualque tecla para continuar...\n");
 	getch();
     system("cls");
   
@@ -1130,9 +1163,9 @@ void ataque (){
 
 DefinirFronteiras ();
 
-int p;
-int b = 1;
-while (b=1){
+int x,a,b,c,g;
+int q = 1;
+while (q=1){
 
 printarmapa();
 
@@ -1143,29 +1176,92 @@ printf("Digite o pais que deseja atacar (lembre-se que so se pode atacar paises 
 scanf("%i", &de);
 
 
-	if((territorios[at].fronteiras[0] == de) || (territorios[at].fronteiras[1] == de) || (territorios[at].fronteiras[2] == de)|| (territorios[at].fronteiras[3] == de) 
-	&& (territorios[at].jogador != jogadorDaVez))
-	{
+
+	if (territorios[de].jogador != jogadorDaVez) {
+	  
+	if((territorios[at].fronteiras[0] == de) || (territorios[at].fronteiras[1] == de) || (territorios[at].fronteiras[2] == de)
+	|| (territorios[at].fronteiras[3] == de) ) {
+	
+	   
 	   DADOS();
 	   jogo_de_dados ();
 	   
-	   if ((territorios[de].tropas[0] == 0) && (territorios[de].tropas[1] == 0) && (territorios[de].tropas[2] == 0)) {
+     if ((territorios[de].tropas[0] == 0) && (territorios[de].tropas[1] == 0) && (territorios[de].tropas[2] == 0)) {
 	   	       territorios[de].jogador = jogadorDaVez;
 			 *(territorios[de].coord4) = jogadorDaVez;
-	   	}	  
-	   	
-	   	printf("Se dejesejar parar o ataque, digite 1, para continuar digite 2...\n");
-		scanf("%d", &p);
-		if (p == 1) {
-		break;
-			  
-	  system("cls"); 
-	   
-	} 
+			
+	system("cls");		
+			
+	 nt = 0;  	     
+	 while (nt<3)  {
+	 	
+      printarmapa();
+	 
+	  printf("jogador %c voce conquistou o pais %i! Voce deve colocar no minimo 1 tropa e no maximo 3 no pais conquistado!\nDigite o numero de um dos seus paises de que deseja retirar uma tropas:\n", territorios[at].jogador,de);
+	  scanf("%i", &p);
+	 	
+	if ((territorios[p].jogador == jogadorDaVez) && (territorios[p].tropas[0] + territorios[p].tropas[1] + territorios[p].tropas[2] > 1))  {  	     
+	//tirando do pais escolhiso   	     
+	a = territorios[p].tropas[0] * 100;
+	b = territorios[p].tropas[1]  * 10;
+	c = territorios[p].tropas[2] + a +b  - 1;
 	
-	if(p==2)system("cls");
+	territorios[p].tropas[0] = c/100;
+	territorios[p].tropas[1] = (c - territorios[p].tropas[0] * 100) / 10;
+	territorios[p].tropas[2] = (c - territorios[p].tropas[0] * 100 ) - territorios[p].tropas[1] * 10;
+  	
+  	*(territorios[p].coord1) = (territorios[p].tropas[0] + '0');
+  	*(territorios[p].coord2) = (territorios[p].tropas[1] + '0');
+  	*(territorios[p].coord3) = (territorios[p].tropas[2] + '0');
+  	
+  	//colocando no pais conquistado
+  	a = territorios[de].tropas[0] * 100;
+	b = territorios[de].tropas[1]  * 10;
+	c = territorios[de].tropas[2] + a +b  + 1;
 	
-	}else {
+	territorios[de].tropas[0] = c/100;
+	territorios[de].tropas[1] = (c - territorios[de].tropas[0] * 100) / 10;
+	territorios[de].tropas[2] = (c - territorios[de].tropas[0] * 100 ) - territorios[de].tropas[1] * 10;
+  	
+  	*(territorios[de].coord1) = (territorios[de].tropas[0] + '0');
+  	*(territorios[de].coord2) = (territorios[de].tropas[1] + '0');
+  	*(territorios[de].coord3) = (territorios[de].tropas[2] + '0');
+
+    if(nt < 2){
+	
+    printf("Se deseja parar de remanejar as tropas digite 1, se nao digite 2\n" );
+    scanf("%i", &g);
+   
+    if(g == 1){
+	system("cls");
+	break;	
+	} else{
+    system("cls");
+	++nt;
+  }
+  }
+
+} else{
+	printf("jogada inválida!\nDigite qualquer tecla para continuar...\n");
+    getch();
+    system("cls");
+}
+		   
+	}
+		   
+}
+	   	printf("Se desejar parar o ataque, digite 1, para continuar digite 2...\n");
+		scanf("%d", &x);
+		if (x == 1) {
+	    system("cls");
+		break; 
+	   	} 
+	system("cls");
+}
+}
+
+		
+	else {
 		printf("Nao eh possivel realizar esse ataque!\nDigite qualquer tecla para continuar\n");
 		getch();
 		system("cls");
@@ -1173,43 +1269,114 @@ scanf("%i", &de);
 }
 }
 
+
 void ataque2 () {
 
 DefinirFronteiras ();
 
-int p;
-int b = 1;
-while (b=1){
+int a,b,c,g,x;
+int q = 1;
+while (q=1){
 
 printarmapa();
 
 printf("Jogador %c, digite o numero do pais origem do ataque:\n", segundoJogador);
 scanf("%i", &at);
 
-printf("Digite o país que deseja atacar (lembre-se que so se pode atacar paises que façam fronteira com o de origem)\n");
+printf("Digite o pais que deseja atacar (lembre-se que so se pode atacar paises que façam fronteira com o de origem)\n");
 scanf("%i", &de);
 
+system("cls");
 
-	if((territorios[at].fronteiras[0] == de) || (territorios[at].fronteiras[1] == de) || (territorios[at].fronteiras[2] == de)|| (territorios[at].fronteiras[3] == de) && (territorios[at].jogador != jogadorDaVez))
+    if(territorios[de].jogador != segundoJogador) {
+
+	if((territorios[at].fronteiras[0] == de) || (territorios[at].fronteiras[1] == de) || (territorios[at].fronteiras[2] == de)
+	|| (territorios[at].fronteiras[3] == de) )
 	{
+	   printarmapa();	
 	   DADOS();
 	   jogo_de_dados ();
 	   
 	   if ((territorios[de].tropas[0] == 0) && (territorios[de].tropas[1] == 0) && (territorios[de].tropas[2] == 0)){
 	   	       territorios[de].jogador = segundoJogador;
 			 *(territorios[de].coord4) = segundoJogador;
+			 
+	system("cls");		 
+	 nt = 0;  	     
+	 while (nt<3)  {
+	 	
+	printarmapa(); 	
+	 	
+	printf("jogador %c voce conquistou o pais %i! Voce deve colocar no minimo 1 tropa e no maximo 3 no pais conquistado!\nDigite o numero de um dos seus paises de que deseja retirar uma tropas:\n", segundoJogador,de);
+    scanf("%i", &p);
+	  	
+	 	     
+	 if ((territorios[p].jogador == segundoJogador) && (territorios[p].tropas[0] + territorios[p].tropas[1] + territorios[p].tropas[2] > 1)) {  	     
+	//tirando do pais escolhido   	     
+	a = territorios[p].tropas[0] * 100;
+	b = territorios[p].tropas[1]  * 10;
+	c = territorios[p].tropas[2] + a +b  - 1;
+	
+	territorios[p].tropas[0] = c/100;
+	territorios[p].tropas[1] = (c - territorios[p].tropas[0] * 100) / 10;
+	territorios[p].tropas[2] = (c - territorios[p].tropas[0] * 100 ) - territorios[p].tropas[1] * 10;
+  	
+  	*(territorios[p].coord1) = (territorios[p].tropas[0] + '0');
+  	*(territorios[p].coord2) = (territorios[p].tropas[1] + '0');
+  	*(territorios[p].coord3) = (territorios[p].tropas[2] + '0');
+  	
+  	//colocando no pais conquistado
+  	a = territorios[de].tropas[0] * 100;
+	b = territorios[de].tropas[1]  * 10;
+	c = territorios[de].tropas[2] + a +b  + 1;
+	
+	territorios[de].tropas[0] = c/100;
+	territorios[de].tropas[1] = (c - territorios[de].tropas[0] * 100) / 10;
+	territorios[de].tropas[2] = (c - territorios[de].tropas[0] * 100 ) - territorios[de].tropas[1] * 10;
+  	
+  	*(territorios[de].coord1) = (territorios[de].tropas[0] + '0');
+  	*(territorios[de].coord2) = (territorios[de].tropas[1] + '0');
+  	*(territorios[de].coord3) = (territorios[de].tropas[2] + '0');
+
+    
+    if(nt<2){
+	
+    printf("Se deseja parar de remanejar as tropas digite 1, se nao digite 2\n" );
+    scanf("%i", &g);
+   
+    if(g == 1){
+    break;
+	system("cls");	
+	} else{
+	++nt;
+  	system("cls");
+  }
+}
+
+} else{
+	printf("jogada inválida!\nDigite qualquer tecla para continuar...\n");
+    getch();
+    system("cls");
+}
+		   
+	}
+		   }	  
 	   	
-			 }	   
+	  
+	   	
 	   
-	    printf("Se dejesejar parar o ataque, digite 1, para continuar digite 2...\n");
+	    printf("Se desejar parar o ataque, digite 1, para continuar digite 2...\n");
 		scanf("%d", &p);
 		if (p == 1) {
-		break;
 		system("cls");
-	   
+		break;
 	} 
 	
-	if(p==2) system("cls");
+	
+	system("cls");
+}
+}
+
 	else {
 		printf("Nao eh possivel atacar esse pais!\nDigite qualquer tecla para continuar\n");
 		getch();
@@ -1219,4 +1386,6 @@ scanf("%i", &de);
 }
 }
 
-  
+
+
+
