@@ -656,6 +656,7 @@ int achou(int x){
 
 	int MaX, MnX, MX, MaY, MnY, MY;
 	int a, b, c;
+	int uma_tropaX, uma_tropaY;
 
 	MaX=0;
 	MnX=0;
@@ -800,148 +801,150 @@ int achou(int x){
 		}
 	}
 	
-	//Ataque X Defesa
-	if (MaX == 10 && MaY ==10){
+//Ataque X Defesa
+	
+if (uma_tropaX == 10 && uma_tropaY == 10){
 	printf("Voce so pode atacar com mais de uma tropa no pais!\nDigite qualquer tecla para continuar...\n");
 	getch();
 	system("cls");
 		
-	} else{
+} 
 	
 
-	// MaX Vs MaY
+// MaX Vs MaY
+	
+if(MaX != 0 && MaY != 0){
 	if (MaX>MaY) { 
-	printf("Ataque vence o primeiro dado!\n");
-	
-	a = territorios[de].tropas[0] * 100;
-	b = territorios[de].tropas[1]  * 10;
-	c= territorios[de].tropas[2] + a +b  -1;
-	
-	if (c<0){
-		c = 0;
-	}
-	
-	territorios[de].tropas[0] = c/100;
-	territorios[de].tropas[1] = (c - territorios[de].tropas[0] * 100) / 10;
-	territorios[de].tropas[2] = (c - territorios[de].tropas[0] * 100 ) - territorios[de].tropas[1] * 10;
-  	
-  	*(territorios[de].coord1) = (territorios[de].tropas[0] + '0');
-  	*(territorios[de].coord2) = (territorios[de].tropas[1] + '0');
-  	*(territorios[de].coord3) = (territorios[de].tropas[2] + '0');
-  	
-	
-	}
-	
-	if ( (MaX<MaY) || (MaX==MaY) ) {
-	printf("Defesa vence o primeiro dado!\n");	
-	
-	a = territorios[at].tropas[0] * 100;
-	b = territorios[at].tropas[1]  * 10;
-	c = territorios[at].tropas[2] + a + b -1;
-	
+		printf("%d VS %d: Ataque vence o primeiro dado!\n", MaX, MaY);
+			
+		a = territorios[de].tropas[0] * 100;
+		b = territorios[de].tropas[1]  * 10;
+		c= territorios[de].tropas[2] + a +b  -1;
+			
 		if (c<0){
-		c = 0;
+			c = 0;
+		}
+			
+		territorios[de].tropas[0] = c/100;
+		territorios[de].tropas[1] = (c - territorios[de].tropas[0] * 100) / 10;
+		territorios[de].tropas[2] = (c - territorios[de].tropas[0] * 100 ) - territorios[de].tropas[1] * 10;
+		  	
+		  *(territorios[de].coord1) = (territorios[de].tropas[0] + '0');
+		  *(territorios[de].coord2) = (territorios[de].tropas[1] + '0');
+		  *(territorios[de].coord3) = (territorios[de].tropas[2] + '0');
+	  		
 	}
-	
-	territorios[at].tropas[0] = c/100;
-	territorios[at].tropas[1] = (c - territorios[at].tropas[0] * 100) / 10;
-	territorios[at].tropas[2] = (c - territorios[at].tropas[0] * 100 ) - territorios[at].tropas[1] * 10;
-  	
-  	*(territorios[at].coord1) = (territorios[at].tropas[0] + '0');
-  	*(territorios[at].coord2) = (territorios[at].tropas[1] + '0');
-  	*(territorios[at].coord3) = (territorios[at].tropas[2] + '0');
-  	
-	
+		
+	if ( (MaX<MaY) || (MaX==MaY) ) {
+		printf("%d VS %d: Defesa vence o primeiro dado!\n", MaX, MaY);	
+		
+		a = territorios[at].tropas[0] * 100;
+		b = territorios[at].tropas[1]  * 10;
+		c = territorios[at].tropas[2] + a + b -1;
+			
+		if (c<0){
+			c = 0;
+		}
+			
+		territorios[at].tropas[0] = c/100;
+		territorios[at].tropas[1] = (c - territorios[at].tropas[0] * 100) / 10;
+		territorios[at].tropas[2] = (c - territorios[at].tropas[0] * 100 ) - territorios[at].tropas[1] * 10;
+		  	
+		  *(territorios[at].coord1) = (territorios[at].tropas[0] + '0');
+		  *(territorios[at].coord2) = (territorios[at].tropas[1] + '0');
+		  *(territorios[at].coord3) = (territorios[at].tropas[2] + '0');
+	  	
 	 }
+}
 	
-	// MX Vs MY
-	if(MX != 0 && MY != 0){
+// MX Vs MY
+	
+if(MX != 0 && MY != 0){
 	if (MX>MY) {
-	printf("Ataque vence o segundo dado!\n");
+		printf("%d VS %d: Ataque vence o segundo dado!\n", MX, MY);
+			
+		a = territorios[de].tropas[0] * 100;
+		b = territorios[de].tropas[1]  * 10;
+		c = territorios[de].tropas[2] + a + b -1;
+			
+		if (c<0){
+			c = 0;
+		}
+			
+		territorios[de].tropas[0] = c/100;
+		territorios[de].tropas[1] = (c - territorios[de].tropas[0] * 100) / 10;
+		territorios[de].tropas[2] = (c - territorios[de].tropas[0] * 100 ) - territorios[de].tropas[1] * 10;
+		  	
+		  *(territorios[de].coord1) = (territorios[de].tropas[0] + '0');
+		  *(territorios[de].coord2) = (territorios[de].tropas[1] + '0');
+		  *(territorios[de].coord3) = (territorios[de].tropas[2] + '0');
 	
-	a = territorios[de].tropas[0] * 100;
-	b = territorios[de].tropas[1]  * 10;
-	c = territorios[de].tropas[2] + a + b -1;
-	
-	if (c<0){
-		c = 0;
-	}
-	
-	territorios[de].tropas[0] = c/100;
-	territorios[de].tropas[1] = (c - territorios[de].tropas[0] * 100) / 10;
-	territorios[de].tropas[2] = (c - territorios[de].tropas[0] * 100 ) - territorios[de].tropas[1] * 10;
-  	
-  	*(territorios[de].coord1) = (territorios[de].tropas[0] + '0');
-  	*(territorios[de].coord2) = (territorios[de].tropas[1] + '0');
-  	*(territorios[de].coord3) = (territorios[de].tropas[2] + '0');
-
 	}
 	if ((MX<MY) || (MX==MY) ){
-	printf("Defesa vence o segundo dado!\n");	
-	
-	a = territorios[at].tropas[0] * 100;
-	b = territorios[at].tropas[1]  * 10;
-	c = territorios[at].tropas[2] + a + b -1;
-	
-	if (c<0){
-		c = 0;
-	}
-	
-	territorios[at].tropas[0] = c/100;
-	territorios[at].tropas[1] = (c - territorios[at].tropas[0] * 100) / 10;
-	territorios[at].tropas[2] = (c - territorios[at].tropas[0] * 100 ) - territorios[at].tropas[1] * 10;
-  	
-  	*(territorios[at].coord1) = (territorios[at].tropas[0] + '0');
-  	*(territorios[at].coord2) = (territorios[at].tropas[1] + '0');
-  	*(territorios[at].coord3) = (territorios[at].tropas[2] + '0');
-  	
-	}
-	}
-	
-	// MnX Vs MnY
-	if(MnX != 0 && MnY != 0){
-	if (MnX>MnY) {
-	printf("Ataque vence o terceiro dado!\n");
-	
-	a = territorios[de].tropas[0] * 100;
-	b = territorios[de].tropas[1]  * 10;
-	c = territorios[de].tropas[2] + a + b -1;
-	
+		printf("%d VS %d: Defesa vence o segundo dado!\n", MX, MY);	
+			
+		a = territorios[at].tropas[0] * 100;
+		b = territorios[at].tropas[1]  * 10;
+		c = territorios[at].tropas[2] + a + b -1;
+			
 		if (c<0){
-		c = 0;
+			c = 0;
+		}
+			
+		territorios[at].tropas[0] = c/100;
+		territorios[at].tropas[1] = (c - territorios[at].tropas[0] * 100) / 10;
+		territorios[at].tropas[2] = (c - territorios[at].tropas[0] * 100 ) - territorios[at].tropas[1] * 10;
+		  	
+		  *(territorios[at].coord1) = (territorios[at].tropas[0] + '0');
+		  *(territorios[at].coord2) = (territorios[at].tropas[1] + '0');
+		  *(territorios[at].coord3) = (territorios[at].tropas[2] + '0');
+	  	
 	}
+}
 	
-	territorios[de].tropas[0] = c/100;
-	territorios[de].tropas[1] = (c - territorios[de].tropas[0] * 100) / 10;
-	territorios[de].tropas[2] = (c - territorios[de].tropas[0] * 100 ) - territorios[de].tropas[1] * 10;
-  	
-  	*(territorios[de].coord1) = (territorios[de].tropas[0] + '0');
-  	*(territorios[de].coord2) = (territorios[de].tropas[1] + '0');
-  	*(territorios[de].coord3) = (territorios[de].tropas[2] + '0');
-
+// MnX Vs MnY
 	
+if(MnX != 0 && MnY != 0){
+	if (MnX>MnY) {
+		printf("%d VS %d: Ataque vence o terceiro dado!\n", MnX, MnY);
+			
+		a = territorios[de].tropas[0] * 100;
+		b = territorios[de].tropas[1]  * 10;
+		c = territorios[de].tropas[2] + a + b -1;
+			
+		if (c<0){
+			c = 0;
+		}
+			
+		territorios[de].tropas[0] = c/100;
+		territorios[de].tropas[1] = (c - territorios[de].tropas[0] * 100) / 10;
+		territorios[de].tropas[2] = (c - territorios[de].tropas[0] * 100 ) - territorios[de].tropas[1] * 10;
+		
+		  *(territorios[de].coord1) = (territorios[de].tropas[0] + '0');
+		  *(territorios[de].coord2) = (territorios[de].tropas[1] + '0');
+		  *(territorios[de].coord3) = (territorios[de].tropas[2] + '0');*/
+		
 	}
 	if ((MnX<MnY) || (MnX==MnY)) {
-	printf("Defesa vence o terceiro dado!\n");	
-	
-	a = territorios[at].tropas[0] * 100;
-	b = territorios[at].tropas[1]  * 10;
-	c = territorios[at].tropas[2] + a + b -1;
-	
-		if (c<0){
-		c = 0;
-	}
-	
-	territorios[at].tropas[0] = c/100;
-	territorios[at].tropas[1] = (c - territorios[at].tropas[0] * 100) / 10;
-	territorios[at].tropas[2] = (c - territorios[at].tropas[0] * 100 ) - territorios[at].tropas[1] * 10;
-  	
-  	*(territorios[at].coord1) = (territorios[at].tropas[0] + '0');
-  	*(territorios[at].coord2) = (territorios[at].tropas[1] + '0');
-  	*(territorios[at].coord3) = (territorios[at].tropas[2] + '0');
-  	
+		printf("%d VS %d: Defesa vence o terceiro dado!\n", MnX, MnY);	
+			
+		a = territorios[at].tropas[0] * 100;
+		b = territorios[at].tropas[1]  * 10;
+		c = territorios[at].tropas[2] + a + b -1;
+			
+			if (c<0){
+				c = 0;
+			}
+			
+		territorios[at].tropas[0] = c/100;
+		territorios[at].tropas[1] = (c - territorios[at].tropas[0] * 100) / 10;
+		territorios[at].tropas[2] = (c - territorios[at].tropas[0] * 100 ) - territorios[at].tropas[1] * 10;
+		  	
+		 *(territorios[at].coord1) = (territorios[at].tropas[0] + '0');
+		 *(territorios[at].coord2) = (territorios[at].tropas[1] + '0');
+		 *(territorios[at].coord3) = (territorios[at].tropas[2] + '0');
+	  	
 	} 
-	}
 }
 	return;
 } 
@@ -953,43 +956,47 @@ int resultado, i = 0;
 dados();
 srand(time(NULL));
 
-if ((territorios[at].tropas[2] == 1) && (territorios[at].tropas[1] == 0) && (territorios[at].tropas[0] == 0 )){
-	PDX = 10;
-	PDY = 10;
-}else{
+if((territorios[at].tropas[2] == 1) && (territorios[at].tropas[1] == 0) && (territorios[at].tropas[0] == 0 )){
+
+	uma_tropaX = 10;
+	uma_tropaY = 10;
+}
 
 if((territorios[at].tropas[2] == 2) && (territorios[at].tropas[1] == 0) && (territorios[at].tropas[0] == 0 )){
-	PDX = dados();
-} 
 
-if ((territorios[at].tropas[2] == 3) && (territorios[at].tropas[1] == 0) && (territorios[at].tropas[0] == 0 )) {
+	PDX = dados();
+}
+
+if((territorios[at].tropas[2] == 3) && (territorios[at].tropas[1] == 0) && (territorios[at].tropas[0] == 0 )) {
+
 	PDX = dados();
 	SDX = dados();
 	
- } else {
+} 
+if((territorios[at].tropas[2] >= 4) && (territorios[at].tropas[1] == 0) && (territorios[at].tropas[0] == 0 ){
+
  	PDX = dados ();
 	SDX = dados ();
 	TDX = dados ();
 }
 
 if ((territorios[de].tropas[2] == 1) && (territorios[de].tropas[1] == 0) && (territorios[de].tropas[0] == 0 )){
+
 	PDY= dados(); 
 } 
 
 if((territorios[de].tropas[2] == 2) && (territorios[de].tropas[1] == 0) && (territorios[de].tropas[0] == 0 )){
+
 	PDY = dados();
 	SDY = dados();
 }
 
-else {
+if((territorios[de].tropas[2] >= 3) && (territorios[de].tropas[1] == 0) && (territorios[de].tropas[0] == 0 )){
 	PDY = dados();
 	SDY = dados();
 	TDY = dados();
 	
- } 
-
-}
-
+} 
 }
 
 
